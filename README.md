@@ -1,5 +1,5 @@
 # trojan_study_spots
-Mkae sure you have egit on eclipse
-first go to help ->install new software
-http://download.eclipse.org/egit/updates
+-Make sure you have egit on eclipse
+first go to help ->install new software\n
+http://download.eclipse.org/egit/updates\n
 select everything and install

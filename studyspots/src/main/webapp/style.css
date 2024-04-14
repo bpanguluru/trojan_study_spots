@@ -1,23 +1,28 @@
 @charset "UTF-8";
 
-body {
-	  background-color: powderblue;
+
+input[type="radio"] {
+    display: none;
 }
 
-/* HIDE RADIO */
-	[type=radio] { 
-	  position: absolute;
-	  opacity: 0;
-	  width: 0;
-	  height: 0;
-	}
-	
-	/* IMAGE STYLES */
-	[type=radio] + img {
-	  cursor: pointer;
-	}
-	
-	/* CHECKED STYLES */
-	[type=radio]:checked + img {
-	  outline: 2px solid #f00;
-	}
+/* Style the label as the image */
+.blank-img {
+    display: inline-block;
+    width: 100px; /* Adjust the width of the image */
+    height: 100px; /* Adjust the height of the image */
+    background-image: url('blank-tommy.svg'); /* Replace 'path_to_your_image.jpg' with the path to your image */
+    background-size: cover;
+}
+
+.filled-img {
+    display: inline-block;
+    width: 100px; /* Adjust the width of the image */
+    height: 100px; /* Adjust the height of the image */
+    background-image: url('filled-tommy.svg'); /* Replace 'path_to_your_image.jpg' with the path to your image */
+    background-size: cover;
+}
+
+/* Style for when the radio button is checked */
+input[type="radio"]:checked + .filled-img {
+    border: 2px solid blue; /* Example border style */
+}

@@ -1,20 +1,31 @@
 @charset "UTF-8";
 
 
-input[type="radio"] {
-    display: none;
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style checked checkboxes */
+input[type="checkbox"]:checked + label.checkbox-label {
+    background-color: #007bff;
+    color: #fff;
 }
 
 /* Style the label as the image */
-.blank-img {
+.blank-img1 {
     display: inline-block;
     width: 100px; /* Adjust the width of the image */
     height: 100px; /* Adjust the height of the image */
-    background-image: url('blank-tommy.svg'); /* Replace 'path_to_your_image.jpg' with the path to your image */
+    background-image: url('site_imgs/blank-tommy.svg'); /* Replace 'path_to_your_image.jpg' with the path to your image */
     background-size: cover;
 }
 
-.filled-img {
+.filled-img1 {
     display: inline-block;
     width: 100px; /* Adjust the width of the image */
     height: 100px; /* Adjust the height of the image */
@@ -22,7 +33,4 @@ input[type="radio"] {
     background-size: cover;
 }
 
-/* Style for when the radio button is checked */
-input[type="radio"]:checked + .filled-img {
-    border: 2px solid blue; /* Example border style */
-}
+

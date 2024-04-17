@@ -5,48 +5,55 @@
 <title>Trojan Study Spots</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
-
 </head>
 <body>
-	<form id="rating" onsubmit="submitForm(event)">
-	  <input type="radio" id="radio1" name="rating" value="radio1" onclick = "changeImage(event)">
-		<label for="radio1" class="blank-img"></label>
-	  
-	  <input type="radio" id="radio2" name="rating" value="radio2">
-		<label for="radio2" class=".blank-img"></label>
-		
-		<input type="radio" id="radio3" name="rating" value="radio3">
-		<label for="radio3" class=".blank-img"></label>
-		
-		<input type="radio" id="radio4" name="rating" value="radio4">
-		<label for="radio4" class=".blank-img"></label>
-		
-		<input type="radio" id="radio5" name="rating" value="radio5">
-		<label for="radio5" class=".blank-img"></label>
-
-	  
-	  <input type="submit" value="Submit"><br>
+	
+	<form id="ratingForm" onsubmit="submitForm(event)">
+	    <input type="checkbox" id="checkbox1" name="rating[]" value="checkbox1" onclick="toggleImageClass('checkbox1')">
+	    <label for="checkbox1" class="blank-img1"></label>
+	    
+	    <input type="checkbox" id="checkbox2" name="rating[]" value="checkbox2" onclick="toggleImageClass('checkbox2')">
+	    <label for="checkbox2" class="blank-img1"></label>
+	    
+	    <input type="checkbox" id="checkbox3" name="rating[]" value="checkbox3" onclick="toggleImageClass('checkbox3')">
+	    <label for="checkbox3" class="blank-img1"></label>
+	    
+	    <input type="checkbox" id="checkbox4" name="rating[]" value="checkbox4" onclick="toggleImageClass('checkbox4')">
+	    <label for="checkbox4" class="blank-img1"></label>
+	    
+	    <input type="checkbox" id="checkbox5" name="rating[]" value="checkbox5" onclick="toggleImageClass('checkbox5')">
+	    <label for="checkbox5" class="blank-img1"></label>
+ 		
+ 		<input type="submit" value="Submit"><br>
 	    <input type="reset" value="Reset"/><br>
 	</form>
 	<!-- Div to display form values -->
 	<div id="formValues"></div>
 
 	<script>
+	function toggleImageClass(checkboxId) {
+	    var checkbox = document.getElementById(checkboxId);
+	    var associatedLabel = document.querySelector('label[for="' + checkboxId + '"]');
+	    
+	    if (checkbox.checked) {
+	        associatedLabel.classList.remove('blank-img1');
+	        associatedLabel.classList.add('filled-img1');
+	    } else {
+	        associatedLabel.classList.remove('filled-img1');
+	        associatedLabel.classList.add('blank-img1');
+	    }
+	}
+
 	function submitForm(event) {
-	  event.preventDefault(); // Prevent the default form submission
-	  
-	  // Get the form data
-	  var formData = new FormData(document.getElementById("rating"));
-	  
-	  // Construct the table with form data
-	  var tableHTML = "<table border='1'>";
-	  for (var pair of formData.entries()) {
-	    tableHTML += "<tr><td>" + pair[0] + "</td><td>" + pair[1] + "</td></tr>";
-	  }
-	  tableHTML += "</table>";
-	  
-	  // Display the table in the div
-	  document.getElementById("formValues").innerHTML = tableHTML;
+	    event.preventDefault(); // Prevent the default form submission
+	    
+	    // Get the number of checked checkboxes
+	    var checkedCheckboxes = document.querySelectorAll('input[name="rating[]"]:checked');
+	    var checkedCount = checkedCheckboxes.length;
+	    
+	    // Display the count
+	    var formValuesDiv = document.getElementById("formValues");
+	    formValuesDiv.textContent = checkedCount + " checkboxes checked";
 	}
 	</script>
 </body>

@@ -58,8 +58,8 @@ public class UploadServlet extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
 
             // Connect to the database
-            String url = "jdbc:mysql://localhost:3306/your_database";
-            conn = DriverManager.getConnection(url, "username", "password");
+            String url = "jdbc:mysql://localhost:3306/trojanstudy";
+            conn = DriverManager.getConnection(url, "root", "root");
 
             // Prepare the SQL statement
             String sql = "INSERT INTO Posts (image) VALUES (?)";

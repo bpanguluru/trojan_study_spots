@@ -3,6 +3,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.*;
 
+@WebServlet("/VerifyLoginServlet")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");

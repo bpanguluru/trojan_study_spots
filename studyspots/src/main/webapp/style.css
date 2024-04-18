@@ -21,7 +21,7 @@ input[type="checkbox"]:checked + label.checkbox-label {
     display: inline-block;
     width: 100px; /* Adjust the width of the image */
     height: 100px; /* Adjust the height of the image */
-    background-image: url('site_imgs/blank-tommy.svg'); /* Replace 'path_to_your_image.jpg' with the path to your image */
+    background-image: url('blank-tommy.svg'); /* Replace 'path_to_your_image.jpg' with the path to your image */
     background-size: cover;
 }
 

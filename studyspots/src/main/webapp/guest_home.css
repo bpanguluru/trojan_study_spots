@@ -1,0 +1,204 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  .header {
+    background: white;
+/*    padding: 10px;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+  }
+
+  #nav, #nav a, .card-content, .comments-link {
+    font-family: Arial, sans-serif;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center; /* Centers the search bar horizontally */
+    padding: 20px; /* Adds some space above and below the search bar */
+    margin: auto;
+
+  }
+  .search-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .search-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center-align the children horizontally */
+    justify-content: center; /* Center content vertically if there's extra space */
+    padding: 20px; /* Adds some space around the content */
+    text-align: center; /* Center-aligns text elements within the container */
+  }
+
+  .search-container h1 {
+/*    margin: 0 0 20px 0; /* Adds space below the h1 */*/
+  }
+
+  #search-form {
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  #search-input {
+    padding: 10px;
+    width: 300px;
+    margin-right: -4px; /* Adjusts for the button overlap */
+    border: 2px solid #000000;
+    border-radius: 5px;
+  }
+
+  #search-form button {
+    padding: 10px;
+    border: none;
+    /* background-color: #d1c1f2; */
+    cursor: pointer;
+    border-radius: 5px;
+    color: #d1c1f2;
+  }
+
+  #search-form button img {
+    width: 14px;
+    height: auto;
+  }
+
+  #search-form button:hover {
+     background-color: #d3d3d3;
+  }
+
+
+  .nav {
+    display: flex;
+    gap: 10px;
+/*    align-items: right;*/
+    margin-left: auto;
+  }
+  .nav button {
+    padding: 5px 15px;
+    border: none;
+    background: white;
+    cursor: pointer;
+  }
+  .content {
+    display: flex;
+    justify-content: center; /* Center the card horizontally */
+    align-items: center; /* Center the card vertically */
+    min-height: 100vh; /* Minimum height of content is full viewport height */
+    padding: 20px;
+  }
+  .card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    font-size: 14px;
+    width: 50%; 
+    max-width: 600px;
+/*    margin-left: 25%;*/
+	margin: auto;
+	margin-top: 15px;
+	height: 350px;
+  }
+  .card-image {
+    background: #e0e0e0; /* Placeholder color for the image */
+    width: 50%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  .card-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .rating {
+    display: flex;
+    gap: 5px;
+  }
+  .circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ccc;
+  }
+  .comments-link {
+    background: none;
+    border: none;
+    color: #0000EE;
+    padding: 5px;
+    cursor: pointer;
+    text-align: left;
+  }
+  #nav a:hover {
+   
+  }
+
+  #nav, #nav ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+  #nav li {
+/*    background-color: #d3d3d3;*/
+    width: 370px;
+    text-align: center;
+/*    position: relative;*/
+  }
+  #nav {
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+
+/*    position: sticky;*/
+    top: 0px;
+    left: 0px;
+    right: 0px;
+
+    z-index: 1;
+  }
+  #nav li:hover {
+    background-color: #000000;
+    z-index: 1;
+  }
+  #nav a {
+/*    font-family: 'Noto Serif KR', serif;*/
+    color: black;
+/*    width: 50px;*/
+    height: 50px;
+
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    color: #FFF;
+    display: block;
+    height: 50px;
+  }
+
+  #nav ul {
+    position: absolute;
+    display: none;
+  }
+
+  #nav li:hover > ul {
+    display: block;
+  }
+
+</style>

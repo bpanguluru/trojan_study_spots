@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Building Info</title>
 <link rel="stylesheet" href="guest_home.css">
+<link rel = "stylesheet" href="style.css">
+<script src="script.js"></script>
+
 </head>
 <body>
 
@@ -34,15 +37,32 @@
       <div>Location</div>
       <div>Description</div>
       <div class="rating">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+        <form id="ratingForm" onsubmit="submitForm(event)">
+		    <input type="checkbox" id="checkbox1" name="rating[]" value="checkbox1" onclick="toggleImageClass('checkbox1')">
+		    <label for="checkbox1" class="blank-img1"></label>
+		    
+		    <input type="checkbox" id="checkbox2" name="rating[]" value="checkbox2" onclick="toggleImageClass('checkbox2')">
+		    <label for="checkbox2" class="blank-img1"></label>
+		    
+		    <input type="checkbox" id="checkbox3" name="rating[]" value="checkbox3" onclick="toggleImageClass('checkbox3')">
+		    <label for="checkbox3" class="blank-img1"></label>
+		    
+		    <input type="checkbox" id="checkbox4" name="rating[]" value="checkbox4" onclick="toggleImageClass('checkbox4')">
+		    <label for="checkbox4" class="blank-img1"></label>
+		    
+		    <input type="checkbox" id="checkbox5" name="rating[]" value="checkbox5" onclick="toggleImageClass('checkbox5')">
+		    <label for="checkbox5" class="blank-img1"></label>
+	 		
+	 		<input type="submit" value="Submit"><br>
+		    <input type="reset" value="Reset"/><br>
+		</form>
       </div>
       <button class="comments-link">Comments...</button>
     </div>
   </div>
+  
+  	<div id="formValues"></div>
+  
 
 </body>
 </html>

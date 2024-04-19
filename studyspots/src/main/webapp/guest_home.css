@@ -133,8 +133,8 @@
     gap: 5px;
   }
   .circle {
-    width: 25px;
-    height: 25px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #ccc;
   }

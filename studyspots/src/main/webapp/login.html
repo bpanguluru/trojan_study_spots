@@ -12,6 +12,10 @@
       max-width: 400px;
       padding-top: 50px;
     }
+    .header-icon {
+      height: 30px;
+      margin-right: 10px;
+    }
   </style>
 </head>
 
@@ -19,10 +23,12 @@
   <div class="container">
     <!-- Card Layout for the Form -->
     <div class="card">
-      <h5 class="card-header">Sign In</h5>
+      <div class="card-header d-flex align-items-center">
+        <img src="filled-tommy.svg" class="header-icon" alt="Logo"> <!-- Image next to header -->
+        <h5 class="mb-0">Sign In</h5>
+      </div>
       <div class="card-body">
         <form name="myform" method="GET" action="ProjectServlet">
-
           <div class="mb-3">
             <label for="username" class="form-label">User name:</label>
             <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your user name">
@@ -35,7 +41,6 @@
 
           <button type="submit" class="btn btn-primary">Submit</button>
           <button type="reset" class="btn btn-secondary">Reset</button>
-
         </form>
       </div>
     </div>

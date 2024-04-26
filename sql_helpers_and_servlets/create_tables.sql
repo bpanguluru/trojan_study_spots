@@ -17,13 +17,15 @@ CREATE TABLE Posts (
     image VARCHAR(255),
     trojansRatingSum INT DEFAULT 0,
     numberTrojanRatings INT DEFAULT 0,
-    tags BINARY(255)
+    -- assuming we dont actually want to work with binary
+    tags VARCHAR(255)
 );
 
 CREATE TABLE Comments (
     commentID INT AUTO_INCREMENT PRIMARY KEY,
     content TEXT NOT NULL,
-    tags BINARY(255),
+    -- assuming we dont actually want to work with binary
+    tags VARCHAR(255),
     postID INT,
     userID INT,
     FOREIGN KEY (postID) REFERENCES Posts(postID),

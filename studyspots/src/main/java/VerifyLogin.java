@@ -1,52 +1,71 @@
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 
 @SuppressWarnings("serial")
+@WebServlet("/VerifyLogin")
 public class VerifyLogin extends HttpServlet {
+    private static final String JDBC_DRIVER = "jdbc:mysql://localhost:3306/trojanstudy";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "root";
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        //for database
-        String jdbcUrl = "jdbc:mysql://yourdatabaseserver/dbname";
-        String dbUser = "yourdbusername";
-        String dbPassword = "yourdbpassword";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
         try {
-            //connect
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
+        	
+            // Load JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            //use preparedstatemnt to prevent injection
-            String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
-            statement.setString(2, password);
+            // Establish connection to the database
+            conn = DriverManager.getConnection(JDBC_DRIVER, DB_USER, DB_PASSWORD);
 
-            //query using preparedstamtent
-            ResultSet resultSet = statement.executeQuery();
+            // Prepare SQL statement to check if the username exists and password matches
+            String sql = "SELECT * FROM trojanstudy.users WHERE username = ? AND password = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            rs = pstmt.executeQuery();
 
-            if (resultSet.next()) {
-                //login success
-                //i dunno how to use this it was a gpt suggest
-                request.getSession().setAttribute("user", username);
-                //send to whatever the html is actually called
-                response.sendRedirect("welcome.html"); 
+            if (rs.next()) {
+                // Username and password match
+                response.getWriter().write("success");
             } else {
-                //login_fail
-                response.sendRedirect("login.html?error=invalidCredentials"); // Redirect back to login with error
+                // Username or password is incorrect
+                response.getWriter().write("failure");
             }
-
-            // Clean up
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (ClassNotFoundException | SQLException e) {
+            
+        } catch (SQLException | ClassNotFoundException e) {
+        	
             e.printStackTrace();
-            // Handle exceptions
-            response.sendRedirect("login.html?error=systemError"); // Redirect with system error
+            response.getWriter().write("error");
+            
+        } finally {
+            
+            try {
+            	
+                if (rs != null) {
+                	rs.close();
+                }
+                
+                if (pstmt != null) {
+                	pstmt.close();
+                }
+                
+                if (conn != null) {
+                	conn.close();
+                }
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

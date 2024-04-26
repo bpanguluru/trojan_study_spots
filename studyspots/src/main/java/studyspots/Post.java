@@ -7,20 +7,30 @@ public class Post {
 	int postID;
 	String buildingName; 
 	String buildingID; 
-	String description; 
+	String description;
+	String imagePath;
 	int trojansRatingSum;
 	int numberTrojanRatings; 
 	Set<Boolean> tags = new HashSet<>();
 	
-    public Post(int pID, String bN, String bID, String d, int tRS, int nTR) {
+    public Post(int pID, String bN, String bID, String d, int tRS, int nTR, String imgPath) {
         this.postID = pID;
         this.buildingName = bN;
         this.buildingID = bID; 
         this.description = d; 
         this.trojansRatingSum = tRS;
         this.numberTrojanRatings = nTR;
+        this.imagePath = imgPath;
     }
 
+    public int getImgPath() {
+        return postID;
+    }
+
+    public void setImgPath(String path) { // tID = temporary id; 
+        imagePath = path;
+    }
+    
     public int getPostID() {
         return postID;
     }

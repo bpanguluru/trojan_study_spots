@@ -16,38 +16,45 @@ import java.io.PrintWriter;
 public class ImgUploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DiskFileItemFactory factory = new DiskFileItemFactory();
+    	PrintWriter pw = response.getWriter();
+        Gson gson = new Gson();
+    	
+    	DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
 
-        // Directory where the uploaded files will be saved
+        //drectory where the uploaded files will be saved
         String uploadPath = "../webapp/uploaded_imgs";
         File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdir();
+        if (!uploadDir.exists()) 
+        {
+        	uploadDir.mkdir();
+        }
 
         try {
-            // Parse the request to get file items.
             List<FileItem> formItems = upload.parseRequest(request);
             String fileName="";
+            String filePath = "";
 
-            // Process the uploaded items
+            //for each item in the request
             for (FileItem item : formItems) {
                 if (!item.isFormField()) {
                     fileName = new File(item.getName()).getName();
-                    String filePath = uploadPath+"/"+fileName;
+                    filePath = uploadPath+"/"+fileName;
                     File storeFile = new File(filePath);
 
-                    // Save the file on disk
+                    //saves to uploaded_imgs folder
                     item.write(storeFile);
                 }
             }
 
-            // Store the file path in the database
             saveImagePathToDatabase(fileName);
-
-            /*response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.println("Upload has been done successfully!");*/
             
+            //return path of the file we just added
+            //STILL HAVE TO HANDLE SAME-NAME FILE ISSUES
+            JsonObject jsonResponse = new JsonObject();
+            jsonResponse.addProperty("imgPath", filePath);
+            pw.write(gson.toJson(jsonResponse));
+            pw.close();
 
         } catch (Exception ex) {
             throw new ServletException(ex);
@@ -59,27 +66,19 @@ public class ImgUploadServlet extends HttpServlet {
         PreparedStatement stmt = null;
 
         try {
-            // Load the JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
-
-            // Connect to the database
             String url = "jdbc:mysql://localhost:3306/trojanstudy";
             conn = DriverManager.getConnection(url, "root", "root");
 
-            // Prepare the SQL statement
             String sql = "INSERT INTO Posts (image) VALUES (?)";
             stmt = conn.prepareStatement(sql);
 
-            // Set the image path
             stmt.setString(1, imagePath);
-
-            // Execute the statement
             stmt.executeUpdate();
+            
         } catch (Exception e) {
-            // Handle any exceptions
             e.printStackTrace();
         } finally {
-            // Close the connection and statement
             if (stmt != null) {
                 try { stmt.close(); } catch (SQLException ignored) { }
             }

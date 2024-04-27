@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Comment</title>
+    <link rel ="stylesheet" href = "Comments.css">
+
+</head>
+<body>
+    <h1>Add a New Comment</h1>
+    <form id="commentForm">
+        <div>
+            <label for="buildingName">Building ID:</label>
+            <input type="text" id="buildingName" name="buildingName">
+        </div>
+        
+        <div class = "tags-section">
+             <div class="tags-header"></div>
+              <h2>Tags</h2>
+             
+             <!-- Noise Level -->
+            <div class="button-group">      
+            
+                <label>Noise Level</label>
+                <button type="button" class="tagButton" value="Loud">Loud</button>
+                <button type="button" class="tagButton" value="Quiet">Quiet</button>
+                <button type="button" class="tagButton" value="Silent">Silent</button>
+                
+                
+                <label>Environment</label>
+                <button type="button" class="tagButton" value="Outside">Outside</button>
+                <button type="button" class="tagButton" value="Natural Light">Natural Light</button>
+            	<button type="button" class="tagButton" value="No Windows">No Windows</button>
+            	<button type="button" class="tagButton" value="Much Seating">Much Seating</button>
+           		<button type="button" class="tagButton" value="Limited Seating">Limited Seating</button>
+            	<button type="button" class="tagButton" value="Comfortable">Comfortable</button>
+            	<button type="button" class="tagButton" value="Alternative Seating">Alternative Seating</button>
+            	<button type="button" class="tagButton" value="Clean">Clean</button>
+                
+                
+                <label>Helpful</label>
+                <button type="button" class="tagButton" value="Outlets">Outlets</button>
+            	<button type="button" class="tagButton" value="No Outlets">No Outlets</button>
+            	<button type="button" class="tagButton" value="White boards">White boards</button>
+            	<button type="button" class="tagButton" value="Chalk boards">Chalk boards</button>
+            	<button type="button" class="tagButton" value="Book stacks">Book stacks</button>
+            	
+            	
+                <label>Extras</label>
+				<button type="button" class="tagButton" value="Good for groups">Good for groups</button>
+            	<button type="button" class="tagButton" value="No food Allowed">No food Allowed</button>
+           		<button type="button" class="tagButton" value="Food Neary">Food Nearby</button>
+            	<button type="button" class="tagButton" value="Good For Mornings">Good For Mornings</button>
+            	<button type="button" class="tagButton" value="Good For Afternoon">Good For Afternoon</button>
+            	<button type="button" class="tagButton" value="Good For Nights">Good For Nights</button>
+                
+                
+            </div>
+
+            
+        </div>
+        <div>
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment"></textarea>
+        </div>
+        <div>
+            <button type="button" onclick="clearForm()">Clear</button>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script src="comments.js"></script>
+</body>
+</html>

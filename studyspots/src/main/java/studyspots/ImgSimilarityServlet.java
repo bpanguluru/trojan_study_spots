@@ -21,14 +21,12 @@ import java.net.URL;
 import java.sql.*;
 
 /*
- * INPUT: 3 - letter usc building code as a json to read in
- * OUTPUT: ArrayList of Post objects, which contain all info regarding a post from the Posts db
- * Possible modifications: can also include the first comment if we want to give a comment preview for every post appearing on the posts page
- * Also, if we want we can fairly easily limit it to 10 posts per scroll 
+ * INPUT: 
+ * OUTPUT: postID of image in uploaded_imgs with the closest SIFT similarity  
  */
-
-@WebServlet("/getPostsServlet")
-public class getPostsServlet extends HttpServlet {
+/*
+@WebServlet("/getImgSimilarity")
+public class ImgSimilarityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -110,4 +108,4 @@ public class getPostsServlet extends HttpServlet {
     {
     	String buildingPrompt;
     }
-}
+}*/

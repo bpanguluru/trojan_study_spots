@@ -20,6 +20,13 @@ import java.net.URL;
 //sql imports
 import java.sql.*;
 
+/*
+ * INPUT: 3 - letter usc building code as a json to read in
+ * OUTPUT: ArrayList of Post objects, which contain all info regarding a post from the Posts db
+ * Possible modifications: can also include the first comment if we want to give a comment preview for every post appearing on the posts page
+ * Also, if we want we can fairly easily limit it to 10 posts per scroll 
+ */
+
 @WebServlet("/getPostsServlet")
 public class getPostsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -70,7 +77,8 @@ public class getPostsServlet extends HttpServlet {
             	int trojanRatingSum = rs.getInt("trojansRatingSum");
             	int numberTrojanRatings = rs.getInt("numberTrojanRatings");
             	String tags = rs.getString("tags");
-            	
+            	Post newpost = new Post(buildingName, searchQuery, description, trojanRatingSum, numberTrojanRatings, imgPath, tags);
+            	output.add(newpost);
         	}
             
         	return output;

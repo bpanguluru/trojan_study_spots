@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+.pageContainer {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border: 3px solid #00bcd4;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Added this to include padding in width */
+}
+
+.form-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.form-group button {
+    padding: 10px 15px;
+    background: #00bcd4;
+    border: 1px solid #00bcd4;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.form-group button:hover {
+    background: #019ca0;
+}
+
+#ratingContainer img {
+    cursor: pointer;
+}
+
+/* Custom file upload button */
+.custom-file-upload {
+    border: 1px solid #ddd;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+/* Style for the actual file input, hidden but functional */
+.file-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}

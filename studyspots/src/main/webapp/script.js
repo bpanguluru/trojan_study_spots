@@ -1,3 +1,45 @@
+window.addEventListener('load', function () {
+    fetchPosts();
+});
+
+function fetchPosts() {
+    fetch('/PostServlet')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .then(posts => {
+            posts.forEach(post => {
+                createPostCard(post);
+                console.log("Here");
+            });
+        })
+        .catch(error => console.error('Error fetching posts:', error));
+}
+
+function createPostCard(post) {
+    const container = document.querySelector('.search-container');
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+        <div class="card-image"><img src="${post.image}" alt="Building Image"></div>
+        <div class="card-content">
+            <div class="card-title">${post.buildingName}</div>
+            <div>${post.buildingID}</div>
+            <div>${post.description}</div>
+            <div class="rating">Rating: ${calculateRating(post.trojansRatingSum, post.numberTrojanRatings)}</div>
+            <button class="comments-link">Comments...</button>
+        </div>
+    `;
+    container.appendChild(card);
+}
+
+function calculateRating(sum, count) {
+    return count > 0 ? (sum / count).toFixed(1) : 'No ratings yet';
+}
+
+
+
 // Get all the checkboxes
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     
@@ -42,7 +84,7 @@
             associatedLabel.classList.add('blank-img1');
         }
     }
-l
+
     function submitForm(event) {
         event.preventDefault(); // Prevent the default form submission
         

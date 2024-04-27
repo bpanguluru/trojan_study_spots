@@ -1,3 +1,4 @@
+
 document.querySelector('.register-button').addEventListener('click', function() {
 	
 	var email = document.querySelector('.email-input').value;

@@ -2,11 +2,13 @@ window.addEventListener('load', function () {
     fetchPosts();
 });
 
+
 function fetchPosts() {
-    fetch('/PostServlet')
+    fetch('PostServlet')
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            return data;  // This is necessary to pass the data to the next .then()
         })
         .then(posts => {
             posts.forEach(post => {
@@ -16,6 +18,7 @@ function fetchPosts() {
         })
         .catch(error => console.error('Error fetching posts:', error));
 }
+
 
 function createPostCard(post) {
     const container = document.querySelector('.search-container');
@@ -70,7 +73,7 @@ function calculateRating(sum, count) {
     	 var checkbox = document.getElementById(checkboxId);
          var associatedLabel = document.querySelector('label[for="' + checkboxId + '"]');
          associatedLabel.classList.remove('blank-img1');
-         associatedLabel.classList.add('filled-img1');df
+         associatedLabel.classList.add('filled-img1');
     }
     function toggleImageClass(checkboxId) {
         var checkbox = document.getElementById(checkboxId);
@@ -78,7 +81,7 @@ function calculateRating(sum, count) {
         
         if (checkbox.checked) {
             associatedLabel.classList.remove('blank-img1');
-            associatedLabel.classList.add('filled-img1');df
+            associatedLabel.classList.add('filled-img1');
         } else {
             associatedLabel.classList.remove('filled-img1');
             associatedLabel.classList.add('blank-img1');

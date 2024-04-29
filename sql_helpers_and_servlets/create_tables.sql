@@ -13,6 +13,7 @@ CREATE TABLE Posts (
     postID INT AUTO_INCREMENT PRIMARY KEY,
     buildingName VARCHAR(255) NOT NULL,
     buildingID VARCHAR(255) NOT NULL,
+    locationTitle VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     -- storing image as the address of a directory in which we store all of em
     image VARCHAR(255),

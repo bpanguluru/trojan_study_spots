@@ -1,111 +1,63 @@
-package studyspots;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.ServletException;
+import org.openimaj.image.feature.local.keypoints.Keypoint;
+import org.openimaj.feature.local.matcher.BasicMatcher;
+import org.openimaj.feature.local.matcher.LocalFeatureMatcher;
+import org.openimaj.feature.local.matcher.MatchingUtilities;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-//sql imports
-import java.sql.*;
+import javax.servlet.http.*;
+import javax.servlet.ServletException;
+import java.io.*;
+import java.util.List;
 
-/*
- * INPUT: 
- * OUTPUT: postID of image in uploaded_imgs with the closest SIFT similarity  
- */
-/*
 @WebServlet("/getImgSimilarity")
 public class ImgSimilarityServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ArrayList<Post> postList = new ArrayList<>();
-    	
-    	response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
-        PrintWriter pw = response.getWriter();
-        
-        Gson gson = new Gson();
-        Search search = gson.fromJson(request.getReader(), Search.class);
-        String query = search.buildingPrompt;
-        
-        //get entire arraylist of posts that match the query
-        SearchResult out= new SearchResult();
-        out.postsList = getPostList(query);
-        
-        //output that as a class that contains the arraylist
-        Gson gson2 = new Gson(); 
-		String json = gson.toJson(out);	   
-	    pw.write(json);
-	    pw.flush(); 
-    }
-    
-    private ArrayList<Post> getPostList(String searchQuery)
-    {
-    	Connection conn = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Assume file upload is handled here (See ImgUploadServlet for actual implementation)
+        FImage queryImage = ImageUtilities.readF(request.getPart("image").getInputStream());
 
-        try {
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/joe?user=root&password=root");
-            String query = "SELECT * FROM posts WHERE buildingID = ?";
-            pst = conn.prepareStatement(query);
-            pst.setString(1, searchQuery);
-            rs = pst.executeQuery();
-            
-            ArrayList<Post> output = new ArrayList<>();
-            while(rs.next())
-            {
-            	String buildingName = rs.getString("buildingName");
-            	String description = rs.getString("description");
-            	String imgPath = rs.getString("image");
-            	int trojanRatingSum = rs.getInt("trojansRatingSum");
-            	int numberTrojanRatings = rs.getInt("numberTrojanRatings");
-            	String tags = rs.getString("tags");
-            	Post newpost = new Post(buildingName, searchQuery, description, trojanRatingSum, numberTrojanRatings, imgPath, tags);
-            	output.add(newpost);
-        	}
-            
-        	return output;
-            
+        // SIFT feature extraction
+        DoGSIFTEngine engine = new DoGSIFTEngine();
+        List<Keypoint> queryKeypoints = engine.findFeatures(queryImage.normalise());
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pst != null) {
-                    pst.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException sqle) {
-                System.out.println("SQLException on closing: " + sqle.getMessage());
+        // Matcher setup
+        LocalFeatureMatcher<Keypoint> matcher = new BasicMatcher<>(80);
+        int highestScore = 0;
+        String mostSimilarImagePath = null;
+
+        // Assuming you have a way to get image paths from your database
+        List<String> imagePaths = getImagePathsFromDB(); // You need to implement this method
+        for (String path : imagePaths) {
+            FImage dbImage = ImageUtilities.readF(new File(path));
+            List<Keypoint> dbKeypoints = engine.findFeatures(dbImage.normalise());
+            matcher.setModelFeatures(queryKeypoints);
+            matcher.findMatches(dbKeypoints);
+
+            // Scoring based on the number of matches
+            int score = matcher.getMatches().size();
+            if (score > highestScore) {
+                highestScore = score;
+                mostSimilarImagePath = path;
             }
         }
-        return null;
+
+        // Retrieve the postID corresponding to the most similar image
+        String postID = getPostIDFromImagePath(mostSimilarImagePath); // You need to implement this method
+
+        // Set the response
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(postID);
     }
-    
-    static class Search
-    {
-    	String buildingPrompt;
+
+    // Stub methods for database operations
+    private List<String> getImagePathsFromDB() {
+        // Connect to your database and retrieve image paths
+        return List.of("/path/to/image1.jpg", "/path/to/image2.jpg"); // Example paths
     }
-}*/
+
+    private String getPostIDFromImagePath(String imagePath) {
+        // Connect to your database and retrieve post ID using the image path
+        return "post123"; // Example post ID
+    }
+}

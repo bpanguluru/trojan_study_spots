@@ -1,3 +1,4 @@
+package studyspots;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -14,7 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 public class SearchResult {
-    private static final long serialVersionUID = 1L;
+    
+	public ArrayList<Post> postsList = new ArrayList<>();
+	
+	private static final long serialVersionUID = 1L; 
     private static final String DB_URL = "jdbc:mysql://localhost/TrojanStudy";
     private static final String USER = "root";
     private static final String PASS = "suna1123";

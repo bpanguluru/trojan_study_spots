@@ -40,7 +40,7 @@ public class RegisterUser extends HttpServlet {
             if (rs1.next()) {
                 response.getWriter().write("Email is already registered");
                 return; // Stop further execution
-            }
+           }
 
             // Check if username is already registered
             String usernameCheckQuery = "SELECT * FROM trojanstudy.users WHERE username = ?";
@@ -61,7 +61,7 @@ public class RegisterUser extends HttpServlet {
             pstmt3.setString(3, password);
             pstmt3.executeUpdate();
 
-            response.getWriter().write("success");
+            response.getWriter().write(email);
             
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

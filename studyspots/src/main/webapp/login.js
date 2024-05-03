@@ -9,8 +9,9 @@ document.querySelector('.login-button').addEventListener('click', function() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                if (xhr.responseText === 'success') {
+                if (xhr.responseText !== 'failure') {
                     // Redirect to home page or perform other actions for successful login
+                    localStorage.setItem('username', xhr.responseText);
                     window.location.href = 'user_home.html';
                 } else {
                     // Display error message for unsuccessful login

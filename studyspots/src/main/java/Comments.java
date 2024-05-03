@@ -1,4 +1,4 @@
-package studyspots;
+/*package studyspots;
 
 
 
@@ -52,4 +52,4 @@ public class Comments extends Threads {
 	        this.postID = postID;
 	    }
 
-}
+}*/

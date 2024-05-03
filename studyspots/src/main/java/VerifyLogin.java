@@ -36,7 +36,7 @@ public class VerifyLogin extends HttpServlet {
 
             if (rs.next()) {
                 // Username and password match
-                response.getWriter().write("success");
+                response.getWriter().write(username);
             } else {
                 // Username or password is incorrect
                 response.getWriter().write("failure");

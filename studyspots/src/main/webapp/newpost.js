@@ -122,7 +122,7 @@ document.getElementById("submitPost").addEventListener("click", function(event) 
 	console.log(filteredText);
     
 	var params = {
-		userID: localStorage.getItem("currentUser"), // 
+		userID: localStorage.getItem("username"), // 
 		action: "post",
 		buildingID: bdgVal,
 		buildingName: bdgName,
@@ -132,7 +132,7 @@ document.getElementById("submitPost").addEventListener("click", function(event) 
         rating: checkedCount,
         image: fname,
 	};
-	console.log("params: u-"+localStorage.getItem("currentUser")
+	console.log("params: u-"+localStorage.getItem("username")
 	+" a-post bID-"+bdgVal+" bname-"+bdgName
 	+" loc-"+document.postForm.getElementById("locationTitle").value
 	+" dsc-"+filteredText+" tags-"+tagString)

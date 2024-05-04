@@ -113,16 +113,22 @@ document.getElementById("submitPost").addEventListener("click", function(event) 
 	}
     console.log("tagString: "+tagString);
     
+    //handling oversimilarity
+    if(document.getElementById("locationTitle").value=="sidney harman polymath center"){
+		document.getElementById("postMsg").innerHTML = "Hey! It looks like this building area has already been posted. \nIf you're sure it's new, you can submit, but we recommend looking at other posts under LVL and rating or commenting on one of those";
+		return;
+	}
+    
     
     //swearword filtering
-    var swearWords = ["badword", "nastyword", "offensiveword"];
+    var swearWords = ["fuck", "fucking", "shit",  "ass"];
 	var regexPattern = new RegExp("\\b(" + swearWords.join("|") + ")\\b", "gi");
 	var textDescription = document.postForm.getElementById("description").value;
 	var filteredText = textDescription.replace(regexPattern, "***");
 	console.log(filteredText);
     
 	var params = {
-		userID: localStorage.getItem("username"), // 
+		userID: localStorage.getItem("currentUser"), // 
 		action: "post",
 		buildingID: bdgVal,
 		buildingName: bdgName,
@@ -132,7 +138,7 @@ document.getElementById("submitPost").addEventListener("click", function(event) 
         rating: checkedCount,
         image: fname,
 	};
-	console.log("params: u-"+localStorage.getItem("username")
+	console.log("params: u-"+localStorage.getItem("currentUser")
 	+" a-post bID-"+bdgVal+" bname-"+bdgName
 	+" loc-"+document.postForm.getElementById("locationTitle").value
 	+" dsc-"+filteredText+" tags-"+tagString)

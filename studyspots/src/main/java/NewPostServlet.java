@@ -39,7 +39,7 @@ public class NewPostServlet extends HTTPServlet{
 		try {
 			conn = DriverManager.getConnection(JDBC_DRIVER, DB_USER, DB_PASSWORD);
 			st = conn.createStatement();
-			rs = st.executeQuery("SELECT * FROM Posts WHERE buildingID=='"+buildingID+"'");
+			rs = st.executeQuery("SELECT * FROM Posts WHERE buildingID='"+buildingID+"'");
 			if(rs.next()) {
 				ArrayList<String> locationTitles = new ArrayList<>();
 				locationTitles.add(rs.getString("locationTitle"));
@@ -52,13 +52,16 @@ public class NewPostServlet extends HTTPServlet{
 					}
 				}
 			}
+			rs = st.executeQuery("SELECT userID From Users WHERE username='"+userID+"'");
+			rs.next();
+			int userIDInt = rs.getInt(1);
 			st.execute("INSERT INTO Posts(buildingName, buildingID, locationTitle, description, image, trojanRatingSum, numberTrojanRatings, tags) VALUES('"
 				+buildingName+"', '"+buildingID+"', '"+locationTitle+"', '"+description+"', '"+image+"', "+rating+", 1, '"+tags+"')");
 			rs = st.executeQuery("SELECT LAST_INSERT_ID()");
 			rs.next();
 			postID = rs.getInt(1);
 			st.execute("INSERT INTO Ratings(ratingValue, userID, postID) VALUES("
-					+rating+", '"+userID+", "+postID+")");
+					+rating+", '"+userIDInt+", "+postID+")");
 		} catch (SQLException sqle) {
 			System.out.println("SQLE Exception in Register User. \n"+sqle.getMessage());
 		} finally {

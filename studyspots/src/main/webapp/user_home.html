@@ -3,20 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Building Info</title>
+<title>Home</title>
 <link rel="stylesheet" href="guest_home.css">
-<link rel = "stylesheet" href="style.css">
-<script src="script.js"></script>
-
 </head>
-<body>
+<body onload = "displayCurrPosts()">
 
   <div class="header">
     <ul id="nav">
-      <li><a href="#">Building</a></li>
+      <li><a href="#">Home Page</a></li>
       <li><a href="map.html">Map</a></li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="register.html">Sign Up</a></li>
+      <li><a href="login.html">Logout</a></li>
     </ul>
   </div>
 
@@ -24,108 +20,18 @@
     <h1>Find Your Perfect Study Spot!</h1>
         <form id="search-form">
           <input type="text" id="search-input" placeholder="Search by building ID...">
-          <button onclick = "getPosts()" type="submit">
+          <button type="submit">
             <img src="search.png" alt="Search">
           </button>
         </form>
       </div>
-
-  <div class="card">
-    <div class="card-image">Image</div>
-    <div class="card-content">
-      <!-- content goes here -->
-  </div>
+	
+	<!-- Div to display form values -->
+	<div id="cardContainer"></div>
+	<div id="formValues"></div>
+	
+   <script src="user_home.js"></script>
   
-  	<div id="formValues"></div>
   
-
-
-<script>
-function getPosts() {
-  var searchInput = document.getElementById('search-input').value;
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/getPostsServlet", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var posts = JSON.parse(xhr.responseText);
-      updatePosts(posts);
-    }
-  };
-  var data = JSON.stringify({"buildingPrompt": searchInput});
-  xhr.send(data);
-}
-
-function updatePosts(posts) {
-  var container = document.getElementById('posts-container');
-  container.innerHTML = ''; 
-  posts.postsList.forEach(function(post) {
-    var div = document.createElement('div');
-    div.className = 'post';
-    div.innerHTML = `<h2>${post.buildingName}</h2>
-                     <p>${post.description}</p>
-                     <img src="'${post.imagePath}'" alt="Building Image">
-                     <div>Rating: ${(count > 0 ? (sum / count).toFixed(2) : 'Not rated')} </div>
-                     <div class="rating">
-                     <form id="ratingForm" onsubmit="submitForm(event)">
-            		    <input type="checkbox" id="checkbox1${post.buildingName}" name="rating[]" value="checkbox1" onclick="toggleImageClass('checkbox1')">
-            		    <label for="checkbox1" class="blank-img1${post.buildingName}"></label>
-            		    
-            		    <input type="checkbox" id="checkbox2${post.buildingName}" name="rating[]" value="checkbox2" onclick="toggleImageClass('checkbox2')">
-            		    <label for="checkbox2" class="blank-img1"></label>
-            		    
-            		    <input type="checkbox" id="checkbox3${post.buildingName}" name="rating[]" value="checkbox3" onclick="toggleImageClass('checkbox3')">
-            		    <label for="checkbox3" class="blank-img1"></label>
-            		    
-            		    <input type="checkbox" id="checkbox4${post.buildingName}" name="rating[]" value="checkbox4" onclick="toggleImageClass('checkbox4')">
-            		    <label for="checkbox4" class="blank-img1"></label>
-            		    
-            		    <input type="checkbox" id="checkbox5${post.buildingName}" name="rating[]" value="checkbox5" onclick="toggleImageClass('checkbox5')">
-            		    <label for="checkbox5" class="blank-img1"></label>
-            	 		
-            	 		<input type="submit${post.buildingName}" value="Submit"><br>
-            		    <input type="reset${post.buildingName}" value="Reset"/><br>
-            		 </form>
-                   </div>
-                   <class="comments-link">Comments...</button>`;
-    
-    container.appendChild(div);
-    document.getElementById(`submit${post.buildingName}`).addEventListener('click', function() {
-		event.preventDefault(); 
-		/* HOWEVER RATING IS RETRIEVED FROM FORM DATA*/
-		sendRating();
-    });
-    
-  });
-}
-
-function sendRating(userID, rating) {
-	var formData = {
-        userID: userID,
-        rating: rating
-    };
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "rateServlet", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState === 4 && xhttp.status === 200) { 
-            var response = JSON.parse(xhttp.responseText);
-            if (response.success) 
-            {
-                alert("Rating submitted!");
-            } 
-            else 
-            {
-                alert("Insufficient funds");
-            }
-        }
-    };
-
-    xhttp.send(JSON.stringify(formData));
-}
-
-</script>
 </body>
 </html>

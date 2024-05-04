@@ -1,8 +1,7 @@
-package studyspots;
 
+import java.util.List;
 
-
-public class Comments extends Threads {
+public class Comments extends Thread {
 	
 	
 	 private int commentID;
@@ -11,7 +10,7 @@ public class Comments extends Threads {
 	    private int postID;
 
 	    // Constructor
-	    public Comment(int commentID, String content, List<String> tags, int postID) {
+	    public Comments(int commentID, String content, List<String> tags, int postID) {
 	        this.commentID = commentID;
 	        this.content = content;
 	        this.tags = tags;

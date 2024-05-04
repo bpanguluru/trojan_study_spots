@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/NewPostServlet")
-public class NewPostServlet extends HTTPServlet{
+public class NewPostServlet extends HttpServlet{
 	
-	public static int createPost(String buildingID, String areaTitle, String description, ArrayList<String> tags, int rating) {
+	private static final long serialVersionUID = 417232558511325005L;
+
+	public static int createPost(String buildingID, String areaTitle, String description, ArrayList<String> tags, int rating, String username, String email, String password) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -74,4 +77,4 @@ public class NewPostServlet extends HTTPServlet{
         PrintWriter out = response.getWriter();
         
     }
-}*/
+}

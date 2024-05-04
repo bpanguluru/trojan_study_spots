@@ -230,9 +230,8 @@ input[type="checkbox"]:checked + label.checkbox-label {
     background-size: cover;
 }
 
-.rating-image img {
-    width: 300px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
+.formRating {
+    display: inline-block; /* or flex */
 }
 
 

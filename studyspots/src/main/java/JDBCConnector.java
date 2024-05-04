@@ -1,6 +1,7 @@
 import java.io.Console;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -61,5 +62,37 @@ public class JDBCConnector {
 	    return jsonArray.toString();
 	}
 	
+	static void updateTrojanSum(String buildingID, int checkboxCount) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            // Establish database connection
+	        conn = DriverManager.getConnection("jdbc:mysql://localhost/trojanstudy?user=root&password=root");
+
+            // Prepare SQL statement to update Trojan sum
+            String sql = "UPDATE posts SET trojansRatingSum = trojansRatingSum + ? WHERE buildingID = ?";
+            pstmt = conn.prepareStatement(sql);
+
+            // Set parameters
+            pstmt.setInt(1, checkboxCount);
+            pstmt.setString(2, buildingID);
+
+            // Execute update
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle exception
+        } finally {
+            // Close resources
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                // Handle exception
+            }
+        }
+    }
 
 }

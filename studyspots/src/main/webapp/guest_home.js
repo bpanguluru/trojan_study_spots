@@ -154,12 +154,13 @@ function generateCards(data) {
         var trojansRatingSum = item.trojansRatingSum;
         var numberTrojanRatings = item.numberTrojanRatings;
         var avgRatingImageID = "avgRatingImage_" + index;
-
+		var image = item.image;
+		
         // Create card elements and populate with data
         var card = document.createElement("div");
         card.className = "card";
         var cardContent = `
-            <div class="card-image">Image</div>
+            <div class="card-image"><img src = "${image}"></img></div>
             <div class="card-content">
                 <div class="card-title">Building: ${buildingName}</div>
                 <div>Location: ${buildingID}</div>

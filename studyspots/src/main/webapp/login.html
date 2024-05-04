@@ -7,31 +7,49 @@
         <title>Login</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles/loginregister.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        
+        <style>
+        @charset "UTF-8";
+
+		body{
+		    background-color: #efd0ca;
+		}
+		.card{
+		    background-color: #fffaff;
+		}
+		.btn-full-width {
+		    width: 100%;
+		    margin-bottom: 5px; 
+		}
+		</style>
+	        
     </head>
     <body>
-
         <div class="container">
-            <div class="login container-item">
-                <h2>Login</h2>
-                <span class="input-info">Username:</span>
-                <br>
-                <input type="text" class="username-input">
-                <br>
-                <span class="input-info">Password:</span>
-                <br>
-                <input type="text" class="password-input">
-                <br>
-                <button class="login-button">Submit</button>
-                <br>
-                <a href="guest_home.html" class="guest-button">Continue as Guest <i class="fa-solid fa-arrow-alt-circle-right"></i></a>
-            </div>
-        </div>
-
-        <script src="login.js"></script>
-        <script src="https://kit.fontawesome.com/a2ddfc8d14.js" crossorigin="anonymous"></script>
+		  <div class="row justify-content-center mt-5">
+		    <div class="col-md-6">
+		      <div class="card">
+		        <div class="card-body">
+		          <form>
+		            <div class="form-group">
+		              <label for="username">Username:</label>
+		              <input type="text" class="username-input form-control" name = "username" id="username" placeholder="Enter username" required>
+		            </div>
+		            <div class="form-group">
+		              <label for="password">Password:</label>
+		              <input type="password" class="password-input form-control" name = "password" id="password" placeholder="Enter password" required>
+		            </div>
+		            <button type="button" class="login-button btn btn-primary btn-full-width">Login</button>
+		            <button type="button" class="btn btn-secondary btn-full-width" onclick="redirectToReg()">Click here to register.</button>
+		            <button type="button" class="btn btn-link btn-full-width" onclick="redirectToHome()">Continue as Guest</button>
+		          </form>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<script src = "login.js"></script>
     </body>
 </html>

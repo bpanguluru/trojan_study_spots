@@ -71,7 +71,7 @@ function calculateRating(sum, count) {
     	 var checkbox = document.getElementById(checkboxId);
          var associatedLabel = document.querySelector('label[for="' + checkboxId + '"]');
          associatedLabel.classList.remove('blank-img1');
-         associatedLabel.classList.add('filled-img1');df
+         associatedLabel.classList.add('filled-img1');
     }
     function toggleImageClass(checkboxId) {
         var checkbox = document.getElementById(checkboxId);
@@ -79,7 +79,7 @@ function calculateRating(sum, count) {
         
         if (checkbox.checked) {
             associatedLabel.classList.remove('blank-img1');
-            associatedLabel.classList.add('filled-img1');df
+            associatedLabel.classList.add('filled-img1');
         } else {
             associatedLabel.classList.remove('filled-img1');
             associatedLabel.classList.add('blank-img1');
@@ -183,8 +183,9 @@ function generateCards(data) {
                     <div class="rating-image">Building Rating:
                         <img id="${avgRatingImageID}" src="" alt="Average Rating">
                     </div>
-                    <div class="formRating"> 
-                        <form id="ratingForm" onsubmit="submitForm(event)">
+                </div>
+                <div class="formRating">Your Rating:
+                        <form id="ratingForm" onsubmit="submitForm('${buildingID}')"">
                             <input type="checkbox" id="checkbox1" name="rating[]" value="checkbox1" onclick="toggleImageClass('checkbox1')">
                             <label for="checkbox1" class="blank-img1"></label>
                             
@@ -201,10 +202,10 @@ function generateCards(data) {
                             <label for="checkbox5" class="blank-img1"></label>
                             
                             <input type="submit" value="Rate this building!"><br>
-
                         </form>
                     </div>
-                </div>
+               <div id="formValues"></div>
+
             </div>
         `;
 
@@ -242,4 +243,33 @@ function runOnLoadFunctions() {
 
     // Call the second function
     // Add more function calls as needed
+}
+//var checkboxCount = checkedCheckboxes.length;
+//var formValuesDiv = document.getElementById("formValues");
+//formValuesDiv.textContent = checkedCount + " checkboxes checked";
+    
+    
+function submitForm(buildingID) {
+    // Get the number of checked checkboxes
+    var checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    var checkboxCount = checkedCheckboxes.length;
+
+    // Construct the URL with query parameters
+    var url = 'SubmitRatingServlet?buildingID=' + encodeURIComponent(buildingID) + '&checkboxCount=' + encodeURIComponent(checkboxCount);
+
+    // Send AJAX request to servlet
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Handle successful response
+                console.log('Database updated successfully');
+            } else {
+                // Handle error response
+                console.error('Failed to update database');
+            }
+        }
+    };
+    xhr.send(); // Send request
 }

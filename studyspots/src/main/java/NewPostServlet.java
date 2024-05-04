@@ -39,19 +39,19 @@ public class NewPostServlet extends HTTPServlet{
 		try {
 			conn = DriverManager.getConnection(JDBC_DRIVER, DB_USER, DB_PASSWORD);
 			st = conn.createStatement();
-			rs = st.executeQuery("SELECT * FROM Posts WHERE buildingID='"+buildingID+"'");
-			if(rs.next()) {
-				ArrayList<String> locationTitles = new ArrayList<>();
-				locationTitles.add(rs.getString("locationTitle"));
-				while(rs.next()) {
-					locationTitles.add(rs.getString("locationTitle"));
-				}
-				for(String l: locationTitles) {
-					if (LongestCommonSubsequence.apply(l, locationTitle)>10) {
-						return -2;
-					}
-				}
-			}
+//			rs = st.executeQuery("SELECT * FROM Posts WHERE buildingID='"+buildingID+"'");
+//			if(rs.next()) {
+//				ArrayList<String> locationTitles = new ArrayList<>();
+//				locationTitles.add(rs.getString("locationTitle"));
+//				while(rs.next()) {
+//					locationTitles.add(rs.getString("locationTitle"));
+//				}
+//				for(String l: locationTitles) {
+//					if (LongestCommonSubsequence.apply(l, locationTitle)>10) {
+//						return -2;
+//					}
+//				}
+//			}
 			rs = st.executeQuery("SELECT userID From Users WHERE username='"+userID+"'");
 			rs.next();
 			int userIDInt = rs.getInt(1);

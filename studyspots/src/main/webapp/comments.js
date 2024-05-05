@@ -1,6 +1,9 @@
 
 
         document.querySelectorAll('.tagButton').forEach(button => {
+        	
+        	
+        	
             button.addEventListener('click', function() {
                 const tag = this.value;
                 const index = selectedTags.indexOf(tag);
@@ -27,49 +30,45 @@
             });
             console.log('Form Cleared');
         }
-
+        
+        
         function submitForm() {
+        	console.log(localStorage.getItem("currentUser"));
             const buildingName = document.getElementById('buildingName').value;
-            const comment = document.getElementById('comment').value;
-            console.log('Building Name:', buildingName);
-            console.log('Comment:', comment);
-            console.log('Tags:', selectedTags);
-            location.reload();
-			//window.location.href = 'comments.html'; //redirect to comments again to know it was submitted
-            // Need AJAX request to your server to insert data into the SQL table
-            // For now, we just log it to the console and clear the form
-           //clearForm(); // Optionally clear the form after submitting
-            console.log('Submitting Form');
+            const content = document.getElementById('comment').value;
+            const tags = selectedTags.join(','); // Join the tags array into a comma-separated string
+
+            
+            console.log('Info', buildingName, content, tags);
             
             
-            //Ajax request with CommentsServlet
-            fetch("http://localhost:8080/gkohanba_CSCI201_Assignment4/TradeServlet", {
+            fetch("http://localhost:8080/studyspots/CommentsServlet", { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ trade: trade.ticker, user: user }) 
+                
+                body: JSON.stringify({ content, tags, buildingName })
+                
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Show success message
-                	trade.price = data.c; //ADDED
-                    alert(`SUCCESS: ${data.message}`);
+                    alert(`Comment added: ${data.message}`);
                 } else {
-                    // Show error message
-                    alert(`FAILED: ${data.message}`);
+                    alert(`Comment was not able to be posted: ${data.message}`);
                 }
+                clearForm(); // Clear the form on successful submission
+                window.location.href = 'user_home.html';
             })
             .catch(error => {
-                console.error('Error during trade execution:', error);
+                console.error('Error during form submission:', error);
             });
-            
-            
-            
-            
-        
         }
+
+        
+
+        
 
         // Prevent form from actually submitting
         document.getElementById('commentForm').addEventListener('submit', function(event) {

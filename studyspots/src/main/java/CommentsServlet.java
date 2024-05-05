@@ -28,6 +28,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mysql.cj.xdevapi.Statement;
 
+import studyspots.Tags;
+
 /**
  * Servlet implementation class CommentsServlet
  */
@@ -39,6 +41,8 @@ public class CommentsServlet extends HttpServlet {
      * Default constructor. 
      */
     public CommentsServlet() {
+    	
+    	System.out.println("In comments servlet");
         // TODO Auto-generated constructor stub
     }
 
@@ -49,4 +53,67 @@ public class CommentsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	
+		
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        Gson gson = new Gson();
+        
+        Comments comment = gson.fromJson(request.getReader(), Comments.class);
+        
+        String buildingName = comment.getBuildingName();
+        String commentData = comment.getContent();
+        String tags = comment.getTags();
+        
+        
+        System.out.println(buildingName);
+        System.out.println(commentData);
+        System.out.println(tags);
+        
+        JsonObject jsonResponse = new JsonObject();
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/trojanstudy";
+            
+            conn = DriverManager.getConnection(url, "root", "root"); //whoever is presenting can change their info here 
+        	System.out.println("connected ");
+        	
+        	String sql = "INSERT INTO Comments (content, tags, buildingName) VALUES (?, ?, ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, commentData);
+                stmt.setString(2, tags);
+                stmt.setString(3, buildingName);
+                int result = stmt.executeUpdate();
+
+                if (result > 0) {
+                    jsonResponse.addProperty("success", true);
+                    jsonResponse.addProperty("message", "Comment added successfully");
+                } else {
+                    jsonResponse.addProperty("success", false);
+                    jsonResponse.addProperty("message", "Failed to add comment");
+                }
+            }
+        } catch (SQLException e) {
+            jsonResponse.addProperty("success", false);
+            jsonResponse.addProperty("message", "Database error: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        out.print(gson.toJson(jsonResponse));
+        out.flush();
+		
+		
+	}
+
 }

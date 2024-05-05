@@ -1,54 +1,59 @@
-
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Comments extends Thread {
+import studyspots.Tags;
+
+public class Comments {
 	
 	
-	 private int commentID;
+	 	//private int commentID;
 	    private String content;
-	    private List<String> tags;
-	    private int postID;
+	    private String tags;
+	    private String buildingName;
 
 	    // Constructor
-	    public Comments(int commentID, String content, List<String> tags, int postID) {
-	        this.commentID = commentID;
+	    public Comments(String content, String tags, String buildingName) {
 	        this.content = content;
 	        this.tags = tags;
-	        this.postID = postID;
+	        this.buildingName = buildingName;
 	    }
 
 	    // Getters
-	    public int getCommentID() {
+	    /*public int getCommentID() {
 	        return commentID;
-	    }
+	    }*/
 
 	    public String getContent() {
 	        return content;
 	    }
 
-	    public List<String> getTags() {
+	    public String getTags() {
 	        return tags;
 	    }
-
-	    public int getPostID() {
-	        return postID;
+	    
+	    public String getBuildingName() {  // Getter for buildingName
+	        return buildingName;
 	    }
+
 
 	    // Setters
-	    public void setCommentID(int commentID) {
+	   /* public void setCommentID(int commentID) {
 	        this.commentID = commentID;
-	    }
+	    }*/
 
 	    public void setContent(String content) {
 	        this.content = content;
 	    }
 
-	    public void setTags(List<String> tags) {
+	    public void setTags(String tags) {
 	        this.tags = tags;
 	    }
-
-	    public void setPostID(int postID) {
-	        this.postID = postID;
+	    
+	    public void setBuildingName(String buildingName) {  // Setter for buildingName
+	        this.buildingName = buildingName;
 	    }
+	    
+	    
 
 }

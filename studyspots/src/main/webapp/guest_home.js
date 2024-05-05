@@ -173,6 +173,7 @@ function generateCards(data) {
                 <div class="rating-image">Building Rating:${exactRating}
                     <img id="${avgRatingImageID}" src="" alt="Average Rating">
                 </div>
+                <button onclick="window.open('commentsSearch.html', '_blank')">View Comments</button>
             </div>
         `;
 

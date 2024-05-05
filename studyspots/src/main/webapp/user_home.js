@@ -208,6 +208,7 @@ function generateCards(data) {
                             
                             <input type="submit" value="Rate this building!"><br>
 							<button onclick="window.open('Comments.html', '_blank')">Add Comment</button>
+							<button onclick="window.open('commentsSearch.html', '_blank')">View Comments</button>
                         </form>
                     </div>
                <div id="formValues"></div>

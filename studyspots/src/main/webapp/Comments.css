@@ -6,8 +6,38 @@ body {
 }
 
 h1 {
-    color: #333;
+    color:#00bcd4;
     margin-bottom: 0.5em;
+    text-align: center;
+}
+
+#navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Horizontal padding */
+    background-color:  #00bcd4;
+}
+
+#navLinks {
+    display: flex;
+    justify-content: flex-end; /* Aligns links to the right */
+}
+
+#navLinks a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px; /* Adds space to the left of each link */
+}
+
+
+.pageContainer {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border: 3px solid #00bcd4;
+    border-radius: 10px;
 }
 
 button, input[type="text"], textarea {
@@ -21,8 +51,9 @@ button, input[type="text"], textarea {
 }
 
 button:hover, button:focus, input[type="text"]:hover, input[type="text"]:focus, textarea:hover, textarea:focus {
-    border-color: #007bff;
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+    border-color: #00bcd4;
+    box-shadow: 0 2px 8px #00bcd4;
+    background: #019ca0;
 }
 
 button:active {
@@ -30,13 +61,17 @@ button:active {
 }
 
 .tagButton {
-    background-color: #e9ecef;
-    color: #333;
+	background-color: #00bcd4;
+    color: #fff;;
 }
 
 .tagButton.selected {
-    background-color:red;
-    color: #fff;
+    padding: 10px 15px;
+    border: 1px solid #00bcd4;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #00bcd4;
+    background:  #fff;
 }
 
 .tags-section label {
@@ -51,7 +86,8 @@ button:active {
 }
 
 .tags-section {
-    border-top: 2px solid #007bff;
+	
+    border-top: 2px solid  #00bcd4;
     padding-top: 20px;
     display: flex; 
     flex-direction: column; 

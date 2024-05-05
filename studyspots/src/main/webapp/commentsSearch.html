@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Add Comment</title>
-    <link rel ="stylesheet" href = "Comments.css">
-
+<meta charset="UTF-8">
+<title>Search for Comments</title>
+<link rel ="stylesheet" href = "commentsSearch.css">
 </head>
 <body>
 
@@ -16,17 +15,17 @@
             	<a href="user_home.html">Home/Search</a>
             	<a href="login.html" id= "loginLink" >Login/Sign Up</a>
             	<a href="map.html" id= "mapLink" >Map</a>
-            	<a href="commentsSearch.html" id= "commentSearcg" > Search for a comment</a>
+            	<a href="Comments.html" id= "comments" > Add a comment</a>
 
         	</div>
 
 		</div>
 	</header>
 	
-
-	<div class="pageContainer">
-    <h1>Add a New Comment</h1>
-    <form id="commentForm">
+	
+	<h1>Search for Comments on a Building</h1>
+<div class="pageContainer">
+    <form id="commentSearchForm">
         <div>
             <label>Building Name:</label>
             <select name="buildingName" id="buildingName" required>
@@ -293,63 +292,25 @@
             <option value="ZNI">Zilkha Neurogenetic Institute (ZNI)</option>
         </select>
         </div>
+
         
-        <div class = "tags-section">
-             <div class="tags-header"></div>
-              <h3>Tags:</h3>
-             
-             <!-- Noise Level -->
-            <div class="button-group">      
-            
-                <label>Noise Level</label>
-                <button type="button" class="tagButton" value="Loud">Loud</button>
-                <button type="button" class="tagButton" value="Quiet">Quiet</button>
-                <button type="button" class="tagButton" value="Silent">Silent</button>
-                
-                
-                <label>Environment</label>
-                <button type="button" class="tagButton" value="Outside">Outside</button>
-                <button type="button" class="tagButton" value="Natural Light">Natural Light</button>
-            	<button type="button" class="tagButton" value="No Windows">No Windows</button>
-            	<button type="button" class="tagButton" value="Much Seating">Much Seating</button>
-           		<button type="button" class="tagButton" value="Limited Seating">Limited Seating</button>
-            	<button type="button" class="tagButton" value="Comfortable">Comfortable</button>
-            	<button type="button" class="tagButton" value="Alternative Seating">Alternative Seating</button>
-            	<button type="button" class="tagButton" value="Clean">Clean</button>
-                
-                
-                <label>Helpful</label>
-                <button type="button" class="tagButton" value="Outlets">Outlets</button>
-            	<button type="button" class="tagButton" value="No Outlets">No Outlets</button>
-            	<button type="button" class="tagButton" value="White boards">White boards</button>
-            	<button type="button" class="tagButton" value="Chalk boards">Chalk boards</button>
-            	<button type="button" class="tagButton" value="Book stacks">Book stacks</button>
-            	
-            	
-                <label>Extras</label>
-				<button type="button" class="tagButton" value="Good for groups">Good for groups</button>
-            	<button type="button" class="tagButton" value="No Food Allowed">No Food Allowed</button>
-           		<button type="button" class="tagButton" value="Food Nearby">Food Nearby</button>
-            	<button type="button" class="tagButton" value="Good For Mornings">Good For Mornings</button>
-            	<button type="button" class="tagButton" value="Good For Afternoon">Good For Afternoon</button>
-            	<button type="button" class="tagButton" value="Good For Nights">Good For Nights</button>
-                
-                
-            </div>
+        <button type="submit">Search</button>
+        
+                        
+    	<div id="commentsSection">
+        <!-- Comments will be loaded here via JavaScript or server-side rendering -->
+        <div id="detailsContainer"></div>
+        
+    	</div>
+    
+       
+    
 
-            
-        </div>
-        <div>
-        <label for="comment">Comment:</label>
-        <textarea id="comment" name="comment"></textarea>
-        </div>
-        <div>
-            <button type="button" onclick="clearForm()">Clear</button>
-            <button type="submit">Submit</button>
-        </div>
-    </form>
-    </div>
+    <script src="commentsSearch.js"></script>
+	
+	
+	
+	
 
-    <script src="comments.js"></script>
 </body>
 </html>

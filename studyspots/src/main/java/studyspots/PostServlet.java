@@ -20,7 +20,7 @@ public class PostServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String DB_URL = "jdbc:mysql://localhost/TrojanStudy";
     private static final String USER = "root";
-    private static final String PASS = "suna1123";
+    private static final String PASS = "root";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

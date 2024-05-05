@@ -21,9 +21,9 @@ public class ImgUploadServlet extends HttpServlet {
     	
     	DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
-
-        //drectory where the uploaded files will be saved
-        String uploadPath = "../webapp/uploaded_imgs";
+        
+        //CHANGE THIS FOR YOUR OWN MACHINE
+        String uploadPath = "C:\\Users\\g_bab\\Downloads\\trojan_study_spots\\studyspots\\src\\main\\webapp\\uploaded_imgs";
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) 
         {
@@ -34,13 +34,22 @@ public class ImgUploadServlet extends HttpServlet {
             List<FileItem> formItems = upload.parseRequest(request);
             String fileName="";
             String filePath = "";
-
-            //for each item in the request
+            System.out.println(request);        //for each item in the request
             for (FileItem item : formItems) {
                 if (!item.isFormField()) {
                     fileName = new File(item.getName()).getName();
-                    filePath = uploadPath+"/"+fileName;
+                    
+                    //only if we have the patience to find this jar
+//                    String baseName = FilenameUtils.getBaseName(fileName); // Requires Apache Commons IO
+//                    String extension = FilenameUtils.getExtension(fileName);
+//                    String uniqueFileName = baseName + "_" + System.currentTimeMillis() + "." + extension;
+//                    
+                    filePath = uploadPath+File.separator+fileName;
+                    System.out.println(filePath);
                     File storeFile = new File(filePath);
+                    if (storeFile.exists()) {
+                        storeFile.delete(); // Delete the existing file
+                    }
 
                     //saves to uploaded_imgs folder
                     item.write(storeFile);

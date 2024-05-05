@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="upload-container">
+    <h2>Upload Your Image</h2>
+    <form id="imageUploadForm" enctype="multipart/form-data">
+        <input type="file" name="image" id="imageInput" required>
+        <button id="submitButton" type="submit">Submit Image</button>
+    </form>
+</div>
+
+<script>
+console.log("here");
+document.getElementById('imageUploadForm').addEventListener('submit', function(event) {
+	event.preventDefault();
+    var formData = new FormData(this);
+    fetch('getImgSimilarity', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.postID != '') {
+        	displayCards(data.postID);
+        } else {
+            alert('Upload failed!');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error uploading file.' + error);
+    });
+});
+
+function displayCards(buildingID) {
+    // Fetch post data from the server
+    fetch(`getPostsServlet`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ buildingPrompt: buildingID })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const postsContainer = document.createElement('div');
+        postsContainer.className = 'posts-container';
+        
+        data.postsList.forEach(post => {
+            const card = document.createElement('div');
+            const bigPath = post.imagePath;
+            const rightPath = convertToRelativePath(bigPath);
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-image"><img src="${rightPath}" alt="Building Image"></div>
+                <div class="card-content">
+                    <div class="card-title">${post.buildingName}</div>
+                    <div>${post.locationTitle}</div>
+                    <div>${post.description}</div>
+                    <div>Ratings: ${post.trojansRatingSum / Math.max(post.numberTrojanRatings, 1)}</div>
+                    <div>Tags: ${post.tags}</div>
+                    <div>Path of img: ${rightPath}</div>
+                </div>
+            `;
+            postsContainer.appendChild(card);
+        });
+
+        document.body.appendChild(postsContainer);
+    })
+    .catch(error => {
+        console.error('Error fetching posts:', error);
+        alert('Error fetching post details.');
+    });
+} 
+function convertToRelativePath(fullPath){
+   const filename = fullPath.split('\\').pop();
+   const relativePath = "uploaded_imgs/" + filename;
+   return relativePath;
+}
+
+</script>
+</body>
+</html>

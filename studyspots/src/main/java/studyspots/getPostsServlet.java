@@ -62,7 +62,7 @@ public class getPostsServlet extends HttpServlet {
 
         try {
         	Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/joe?user=root&password=root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trojanstudy?user=root&password=root");
             String query = "SELECT * FROM posts WHERE buildingID = ?";
             pst = conn.prepareStatement(query);
             pst.setString(1, searchQuery);
@@ -72,12 +72,14 @@ public class getPostsServlet extends HttpServlet {
             while(rs.next())
             {
             	String buildingName = rs.getString("buildingName");
+            	String locationTitle = rs.getString("locationTitle");
             	String description = rs.getString("description");
             	String imgPath = rs.getString("image");
             	int trojanRatingSum = rs.getInt("trojansRatingSum");
             	int numberTrojanRatings = rs.getInt("numberTrojanRatings");
             	String tags = rs.getString("tags");
-            	Post newpost = new Post(buildingName, searchQuery, description, trojanRatingSum, numberTrojanRatings, imgPath, tags);
+            	String locTitle = rs.getString("locationTitle");
+            	Post newpost = new Post(buildingName, searchQuery, description, trojanRatingSum, numberTrojanRatings, imgPath, tags, locTitle);
             	output.add(newpost);
         	}
             

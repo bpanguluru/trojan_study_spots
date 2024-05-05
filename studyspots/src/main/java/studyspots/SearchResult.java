@@ -62,9 +62,10 @@ public class SearchResult {
                 int trojanRatingSum = rs.getInt("trojansRatingSum");
                 int numberTrojanRatings = rs.getInt("numberTrojanRatings");
                 String tags = rs.getString("tags");
+                String locationTitle = rs.getString("locationTitle");
 
                 Post post = new Post(buildingName, buildingID, description, numberTrojanRatings, trojanRatingSum,
-                        imgPath, tags);
+                        imgPath, tags, locationTitle);
                 posts.add(post);
             }
         } catch (ClassNotFoundException | SQLException e) {

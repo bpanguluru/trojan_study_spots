@@ -12,9 +12,10 @@ public class Post {
 	int trojansRatingSum;
 	int numberTrojanRatings; 
 	String tagString;
+	String locationTitle;
 	Set<Boolean> tags = new HashSet<>();
 	
-    public Post(String bN, String bID, String d, int tRS, int nTR, String imgPath, String tagString) {
+    public Post(String bN, String bID, String d, int tRS, int nTR, String imgPath, String tagString, String locTitle) {
         this.buildingName = bN;
         this.buildingID = bID; 
         this.description = d; 
@@ -22,6 +23,7 @@ public class Post {
         this.numberTrojanRatings = nTR;
         this.imagePath = imgPath;
         this.tagString = tagString;
+        this.locationTitle = locTitle;
     }
     
     public String getTagString() {

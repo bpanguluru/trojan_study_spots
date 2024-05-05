@@ -9,19 +9,22 @@ import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.text.similarity.LongestCommonSubsequence;
 
 
 @WebServlet("/NewPostServlet")
-public class NewPostServlet extends HTTPServlet{
+public class NewPostServlet extends HttpServlet{
 	
+	private static final long serialVersionUID = 1L;
+
 	//returns -1 if there is an existing post that is over-similar to what you're trying to add,
 	public static int createPost(String userID, String buildingID, String buildingName, String locationTitle, String description, int rating, String image, String tags) {
-		private static final String JDBC_DRIVER = "jdbc:mysql://localhost:3306/trojanstudy";
-	    private static final String DB_USER = "root";
-	    private static final String DB_PASSWORD = "root";
+		final String JDBC_DRIVER = "jdbc:mysql://localhost/trojanstudy";
+	    final String DB_USER = "root";
+	    final String DB_PASSWORD = "root";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -52,15 +55,15 @@ public class NewPostServlet extends HTTPServlet{
 //					}
 //				}
 //			}
-			rs = st.executeQuery("SELECT userID From Users WHERE username='"+userID+"'");
+			rs = st.executeQuery("SELECT userID From users WHERE username='"+userID+"'");
 			rs.next();
 			int userIDInt = rs.getInt(1);
-			st.execute("INSERT INTO Posts(buildingName, buildingID, locationTitle, description, image, trojanRatingSum, numberTrojanRatings, tags) VALUES('"
+			st.execute("INSERT INTO posts(buildingName, buildingID, locationTitle, description, image, trojanRatingSum, numberTrojanRatings, tags) VALUES('"
 				+buildingName+"', '"+buildingID+"', '"+locationTitle+"', '"+description+"', '"+image+"', "+rating+", 1, '"+tags+"')");
 			rs = st.executeQuery("SELECT LAST_INSERT_ID()");
 			rs.next();
 			postID = rs.getInt(1);
-			st.execute("INSERT INTO Ratings(ratingValue, userID, postID) VALUES("
+			st.execute("INSERT INTO ratings(ratingValue, userID, postID) VALUES("
 					+rating+", '"+userIDInt+", "+postID+")");
 		} catch (SQLException sqle) {
 			System.out.println("SQLE Exception in Register User. \n"+sqle.getMessage());

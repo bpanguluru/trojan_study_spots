@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./newpost.css">
     <link rel="stylesheet" href="./Comments.css">
-    <script src="newpost.js"></script>
+    <link rel="stylesheet" href="./ratings.css">
 </head>
 <body>
     <div class="pageContainer">
-        <h1>Add a New Post</h1>
+        <h1 style="color:#00bcd4;">Add a New Post</h1>
         <form id="postForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Building Name:</label>
@@ -286,62 +286,75 @@
                 <label>Description:</label>
                 <textarea name="description" id="description" required></textarea>
             </div>
-            <div class = "tags-section">
-                <div class="tags-header"></div>
-                 <h2>Tags</h2>
-                
+            <div class = "form-group">
+               <label>Tags:</label>
                <div class="button-group">      
                
                    <label>Noise Level</label>
-                   <button type="button" class="tagButton" value="Loud">Loud</button>
-                   <button type="button" class="tagButton" value="Quiet">Quiet</button>
-                   <button type="button" class="tagButton" value="Silent">Silent</button>
+                   <button type="button" id="tagBtn0" class="tagButton" value="0">Loud</button>
+                   <button type="button" id="tagBtn1" class="tagButton" value="1">Quiet</button>
+                   <button type="button" id="tagBtn2" class="tagButton" value="2">Silent</button>
                    
                    
                    <label>Environment</label>
-                   <button type="button" class="tagButton" value="Outside">Outside</button>
-                   <button type="button" class="tagButton" value="Natural Light">Natural Light</button>
-                   <button type="button" class="tagButton" value="No Windows">No Windows</button>
-                   <button type="button" class="tagButton" value="Much Seating">Much Seating</button>
-                   <button type="button" class="tagButton" value="Limited Seating">Limited Seating</button>
-                   <button type="button" class="tagButton" value="Comfortable">Comfortable</button>
-                   <button type="button" class="tagButton" value="Alternative Seating">Alternative Seating</button>
-                   <button type="button" class="tagButton" value="Clean">Clean</button>
+                   <button type="button" id="tagBtn3" class="tagButton" value="3">Outside</button>
+                   <button type="button" id="tagBtn4" class="tagButton" value="4">Natural Light</button>
+                   <button type="button" id="tagBtn5" class="tagButton" value="5">No Windows</button>
+                   <button type="button" id="tagBtn6" class="tagButton" value="6">Much Seating</button>
+                   <button type="button" id="tagBtn7" class="tagButton" value="7">Limited Seating</button>
+                   <button type="button" id="tagBtn8" class="tagButton" value="8">Comfortable</button>
+                   <button type="button" id="tagBtn9" class="tagButton" value="9">Alternative Seating</button>
+                   <button type="button" id="tagBtn10" class="tagButton" value="10">Clean</button>
                    
                    
                    <label>Helpful</label>
-                   <button type="button" class="tagButton" value="Outlets">Outlets</button>
-                   <button type="button" class="tagButton" value="No Outlets">No Outlets</button>
-                   <button type="button" class="tagButton" value="White boards">White boards</button>
-                   <button type="button" class="tagButton" value="Chalk boards">Chalk boards</button>
-                   <button type="button" class="tagButton" value="Book stacks">Book stacks</button>
+                   <button type="button" id="tagBtn11" class="tagButton" value="11">Outlets</button>
+                   <button type="button" id="tagBtn12" class="tagButton" value="12">No Outlets</button>
+                   <button type="button" id="tagBtn13" class="tagButton" value="13">White boards</button>
+                   <button type="button" id="tagBtn14" class="tagButton" value="14">Chalk boards</button>
+                   <button type="button" id="tagBtn15" class="tagButton" value="15">Book stacks</button>
                    
                    
                    <label>Extras</label>
-                   <button type="button" class="tagButton" value="Good for groups">Good for groups</button>
-                   <button type="button" class="tagButton" value="No food Allowed">No food Allowed</button>
-                   <button type="button" class="tagButton" value="Food Nearby">Food Nearby</button>
-                   <button type="button" class="tagButton" value="Good For Mornings">Good For Mornings</button>
-                   <button type="button" class="tagButton" value="Good For Afternoon">Good For Afternoon</button>
-                   <button type="button" class="tagButton" value="Good For Nights">Good For Nights</button>
+                   <button type="button" id="tagBtn16" class="tagButton" value="16">Good for groups</button>
+                   <button type="button" id="tagBtn17" class="tagButton" value="17">No food Allowed</button>
+                   <button type="button" id="tagBtn18" class="tagButton" value="18">Food Nearby</button>
+                   <button type="button" id="tagBtn19" class="tagButton" value="19">Good For Mornings</button>
+                   <button type="button" id="tagBtn20" class="tagButton" value="20">Good For Afternoon</button>
+                   <button type="button" id="tagBtn21" class="tagButton" value="21">Good For Nights</button>
                </div>
            </div>
             <div class="form-group">
                 <label>Rating:</label>
                 <div id="ratingContainer">
-                    <!-- JS populates? -->
+			        <input type="checkbox" id="checkbox1" name="rating[]" value="checkbox1" onclick="toggleImageClass('checkbox1')">
+				    <label for="checkbox1" class="blank-img1"></label>
+				    
+				    <input type="checkbox" id="checkbox2" name="rating[]" value="checkbox2" onclick="toggleImageClass('checkbox2')">
+				    <label for="checkbox2" class="blank-img1"></label>
+				    
+				    <input type="checkbox" id="checkbox3" name="rating[]" value="checkbox3" onclick="toggleImageClass('checkbox3')">
+				    <label for="checkbox3" class="blank-img1"></label>
+				    
+				    <input type="checkbox" id="checkbox4" name="rating[]" value="checkbox4" onclick="toggleImageClass('checkbox4')">
+				    <label for="checkbox4" class="blank-img1"></label>
+				    
+				    <input type="checkbox" id="checkbox5" name="rating[]" value="checkbox5" onclick="toggleImageClass('checkbox5')">
+				    <label for="checkbox5" class="blank-img1"></label>
                 </div>
             </div>
             <div>
                 <label>Upload Image:</label>
-                <input type="file" name="image" accept="image/*" required />
+                <input type="file" name="image" id="imageInput" accept="image/*"/>
             </div>
-            <div class="postMsg"></div>
-            <button type="submit">Submit Post</button>
+            <div id="postMsg" style="color:red; font-weight:bold; display:flex; justify-content:center;"> </div>
+            <div style="display:flex; justify-content:center">
+            	<button type="submit" id="submitPost" style="color:#00bcd4; background:white; border:1px solid #00bcd4; align-self:center">Submit Post</button>
+        	</div>
         </form>
     </div>
 
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             // Handle rating
             for (let i = 1; i <= 5; i++) {
@@ -362,6 +375,7 @@
                 $('#postForm').append(`<input type="hidden" name="rating" value="${rating}" />`);
             });
         });
-    </script>
+    </script> -->
+    <script src="newpost.js"></script>
 </body>
 </html>

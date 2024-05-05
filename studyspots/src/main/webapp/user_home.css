@@ -17,6 +17,13 @@
     font-family: Arial, sans-serif;
   }
 
+	.round-button {
+        background-color: blue; /* Button color */
+        color: white; /* Text color */
+        border-radius: 20px; /* Rounded corners */
+        padding: 10px 20px; /* Padding */
+        font-size: 16px; /* Font size */
+    }
   .search-container {
     display: flex;
     justify-content: center; /* Centers the search bar horizontally */

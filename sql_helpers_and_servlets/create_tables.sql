@@ -28,10 +28,8 @@ CREATE TABLE Comments (
     content TEXT NOT NULL,
     -- assuming we dont actually want to work with binary
     tags VARCHAR(255),
-    postID INT,
-    userID INT,
-    FOREIGN KEY (postID) REFERENCES Posts(postID),
-    FOREIGN KEY (userID) REFERENCES Users(userID)
+	buildingName VARCHAR(50)
+
 );
 
 CREATE TABLE Ratings (

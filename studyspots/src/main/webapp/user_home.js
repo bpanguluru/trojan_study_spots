@@ -41,6 +41,10 @@ function calculateRating(sum, count) {
 	return count > 0 ? Math.round(sum / count) : 'No ratings yet';
  }
   
+function calculateExactRating(sum, count) {
+    return count > 0 ? (sum / count).toFixed(1) : 'No ratings yet';
+}
+
       // Get all the checkboxes
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     
@@ -169,6 +173,7 @@ function generateCards(data) {
         var trojansRatingSum = item.trojansRatingSum;
         var numberTrojanRatings = item.numberTrojanRatings;
         var avgRatingImageID = "avgRatingImage_" + index;
+		var exactRating = calculateExactRating(trojansRatingSum, numberTrojanRatings);
 
         // Create card elements and populate with data
         var card = document.createElement("div");
@@ -180,7 +185,7 @@ function generateCards(data) {
                 <div>Location: ${buildingID}</div>
                 <div>Description: ${description}</div>
                 <div class="rating">
-                    <div class="rating-image">Building Rating:
+                    <div class="rating-image">Building Rating:${exactRating}
                         <img id="${avgRatingImageID}" src="" alt="Average Rating">
                     </div>
                 </div>
@@ -202,6 +207,7 @@ function generateCards(data) {
                             <label for="checkbox5" class="blank-img1"></label>
                             
                             <input type="submit" value="Rate this building!"><br>
+							<button onclick="window.open('Comments.html', '_blank')">Add Comment</button>
                         </form>
                     </div>
                <div id="formValues"></div>

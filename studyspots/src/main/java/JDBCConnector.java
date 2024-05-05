@@ -65,6 +65,7 @@ public class JDBCConnector {
 	static void updateTrojanSum(String buildingID, int checkboxCount) {
         Connection conn = null;
         PreparedStatement pstmt = null;
+        PreparedStatement pstmt2 = null;
 
         try {
             // Establish database connection
@@ -72,14 +73,21 @@ public class JDBCConnector {
 
             // Prepare SQL statement to update Trojan sum
             String sql = "UPDATE posts SET trojansRatingSum = trojansRatingSum + ? WHERE buildingID = ?";
+            String sql2 = "UPDATE posts SET numberTrojanRatings = numberTrojanRatings + 1 WHERE buildingID = ?";
             pstmt = conn.prepareStatement(sql);
+            pstmt2 = conn.prepareStatement(sql2);
 
             // Set parameters
             pstmt.setInt(1, checkboxCount);
             pstmt.setString(2, buildingID);
+            
+            pstmt2.setString(1, buildingID);
+
 
             // Execute update
             pstmt.executeUpdate();
+            pstmt2.executeUpdate();
+
         } catch (Exception e) {
             e.printStackTrace();
             // Handle exception

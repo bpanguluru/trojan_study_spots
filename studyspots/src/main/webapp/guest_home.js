@@ -19,6 +19,9 @@ function fetchPosts() {
         .catch(error => console.error('Error fetching posts:', error));
 }
 
+function calculateExactRating(sum, count) {
+    return count > 0 ? (sum / count).toFixed(1) : 'No ratings yet';
+}
 
 function createPostCard(post) {
     const container = document.querySelector('.search-container');
@@ -155,7 +158,8 @@ function generateCards(data) {
         var numberTrojanRatings = item.numberTrojanRatings;
         var avgRatingImageID = "avgRatingImage_" + index;
 		var image = item.image;
-		
+		var exactRating = calculateExactRating(trojansRatingSum, numberTrojanRatings);
+
         // Create card elements and populate with data
         var card = document.createElement("div");
         card.className = "card";
@@ -166,7 +170,7 @@ function generateCards(data) {
                 <div>Location: ${buildingID}</div>
                 <div>Description: ${description}</div>
                 <div class="rating">
-                <div class="rating-image">Building Rating:
+                <div class="rating-image">Building Rating:${exactRating}
                     <img id="${avgRatingImageID}" src="" alt="Average Rating">
                 </div>
             </div>

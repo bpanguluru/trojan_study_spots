@@ -92,7 +92,7 @@ document.getElementById("submitPost").addEventListener("click", function(event) 
     var bdgName = bdSelec.text;
     console.log("building val: " + bdgVal + " building name: " + bdgName);
     
-    let baseURL =  window.location.origin + "/trojan-study-spots/";
+    let baseURL =  window.location.origin + "/studyspots/";
     var url = new URL("NewPostServlet", baseURL);
     if (bdgVal == "" || document.getElementById("locationTitle").value == "" || document.getElementById("description").value == "" || selectedTags.length == 0 || checkedCount == 0) {
         document.getElementById("postMsg").innerHTML = "Building, location title, description, 3 tags, and a rating are required to make a post.";
@@ -132,19 +132,11 @@ document.getElementById("submitPost").addEventListener("click", function(event) 
     };
     console.log("params: u-" + localStorage.getItem("currentUser") + " a-post bID-" + bdgVal + " bname-" + bdgName + " loc-" + document.getElementById("locationTitle").value + " dsc-" + filteredText + " tags-" + tagString + " r-" + checkedCount + " image-");
     url.search = new URLSearchParams(params).toString();
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-			//WE NEED TO MAKE THE JSON FIELDS BE CHECKED
-			console.log(data);
-			if(data.status === "SUCCESS") {
-				 console.log("New Post success");
-                //window.location.href = 'user_home.html';
-			} else if (data.status === "FAILURE") {
-                console.log("Post failure");
-                document.getElementById("postMsg").innerHTML = "Post could not be submitted.";
-            }
-        }).catch(function(error) {
-            console.log('request failed', error)
-        });
+    fetch(url, {
+	    method: 'POST', // Send a POST request
+	    body: JSON.stringify(params), // Pass parameters in the request body
+	    headers: {
+	        'Content-Type': 'application/json'
+	    }
+	})
 });

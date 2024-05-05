@@ -52,16 +52,7 @@ public class commentsSearchServlet extends HttpServlet {
         JsonObject jsonRequest = JsonParser.parseReader(request.getReader()).getAsJsonObject();
         String buildingName = jsonRequest.get("buildingName").getAsString();
 
-
-
-        //String buildingName = comment.getBuildingName();
-       // String commentData = comment.getContent();
-        //String tags = comment.getTags();
-        
-        
         System.out.println(buildingName);
-       // System.out.println(commentData);
-       // System.out.println(tags);
         
         Connection conn = null;
         PreparedStatement pstmt = null;

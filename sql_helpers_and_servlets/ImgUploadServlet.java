@@ -7,42 +7,63 @@ import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.disk.*;
 import org.apache.commons.fileupload.servlet.*;
 import org.apache.commons.io.output.*;
+import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import java.io.PrintWriter;
 
 @WebServlet("/ImgUploadServlet")
-public class UploadServlet extends HttpServlet {
+public class ImgUploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DiskFileItemFactory factory = new DiskFileItemFactory();
+    	PrintWriter pw = response.getWriter();
+        Gson gson = new Gson();
+    	
+    	DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
 
-        // Directory where the uploaded files will be saved
-        String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+        //CHANGE THIS FOR YOUR OWN MACHINE
+        String uploadPath = "C:\\Users\\g_bab\\Downloads\\trojan_study_spots\\studyspots\\src\\main\\webapp\\uploaded_imgs";
         File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdir();
+        if (!uploadDir.exists()) 
+        {
+        	uploadDir.mkdir();
+        }
 
         try {
-            // Parse the request to get file items.
             List<FileItem> formItems = upload.parseRequest(request);
-            String fileName = "";
-
-            // Process the uploaded items
+            String fileName="";
+            String filePath = "";
+            System.out.println(request);        //for each item in the request
             for (FileItem item : formItems) {
                 if (!item.isFormField()) {
                     fileName = new File(item.getName()).getName();
-                    String filePath = uploadPath + File.separator + fileName;
+                    
+                    //only if we have the patience to find this jar
+//                    String baseName = FilenameUtils.getBaseName(fileName); // Requires Apache Commons IO
+//                    String extension = FilenameUtils.getExtension(fileName);
+//                    String uniqueFileName = baseName + "_" + System.currentTimeMillis() + "." + extension;
+//                    
+                    filePath = uploadPath+File.separator+fileName;
+                    System.out.println(filePath);
                     File storeFile = new File(filePath);
+                    if (storeFile.exists()) {
+                        storeFile.delete(); // Delete the existing file
+                    }
 
-                    // Save the file on disk
+                    //saves to uploaded_imgs folder
                     item.write(storeFile);
                 }
             }
 
-            // Store the file path in the database
             saveImagePathToDatabase(fileName);
-
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.println("Upload has been done successfully!");
+            
+            //return path of the file we just added
+            //STILL HAVE TO HANDLE SAME-NAME FILE ISSUES
+            JsonObject jsonResponse = new JsonObject();
+            jsonResponse.addProperty("imgPath", filePath);
+            pw.write(gson.toJson(jsonResponse));
+            pw.close();
 
         } catch (Exception ex) {
             throw new ServletException(ex);
@@ -54,27 +75,19 @@ public class UploadServlet extends HttpServlet {
         PreparedStatement stmt = null;
 
         try {
-            // Load the JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
-
-            // Connect to the database
             String url = "jdbc:mysql://localhost:3306/trojanstudy";
             conn = DriverManager.getConnection(url, "root", "root");
 
-            // Prepare the SQL statement
             String sql = "INSERT INTO Posts (image) VALUES (?)";
             stmt = conn.prepareStatement(sql);
 
-            // Set the image path
             stmt.setString(1, imagePath);
-
-            // Execute the statement
             stmt.executeUpdate();
+            
         } catch (Exception e) {
-            // Handle any exceptions
             e.printStackTrace();
         } finally {
-            // Close the connection and statement
             if (stmt != null) {
                 try { stmt.close(); } catch (SQLException ignored) { }
             }

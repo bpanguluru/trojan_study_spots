@@ -57,9 +57,10 @@ public class PostServlet extends HttpServlet {
                 String imgPath = rs.getString("image");
                 int trojanRatingSum = rs.getInt("trojansRatingSum");
                 int numberTrojanRatings = rs.getInt("numberTrojanRatings");
+                String locationTitle = rs.getString("locationTitle");
                 String tags = rs.getString("tags");
 
-                Post post = new Post(buildingName, buildingID, description, numberTrojanRatings, trojanRatingSum, imgPath, tags);
+                Post post = new Post(buildingName, buildingID, description, numberTrojanRatings, trojanRatingSum, imgPath, tags, locationTitle);
                 posts.add(post);
             }
         } catch (ClassNotFoundException | SQLException e) {

@@ -51,7 +51,7 @@
     padding: 10px;
     width: 300px;
     margin-right: -4px; /* Adjusts for the button overlap */
-    border: 2px solid #000000;
+    border: 2px solid #019ca0;
     border-radius: 5px;
   }
 
@@ -61,7 +61,7 @@
     /* background-color: #d1c1f2; */
     cursor: pointer;
     border-radius: 5px;
-    color: #d1c1f2;
+    background-color: #019ca0;
   }
 
   #search-form button img {
@@ -70,7 +70,7 @@
   }
 
   #search-form button:hover {
-     background-color: #d3d3d3;
+     background-color: #0bd1d6;
   }
 
 

@@ -154,7 +154,7 @@
   }
   #nav li {
 /*    background-color: #d3d3d3;*/
-    width: 370px;
+    width: 204.8px;
     text-align: center;
 /*    position: relative;*/
   }
@@ -172,8 +172,9 @@
     z-index: 1;
   }
   #nav li:hover {
-    background-color: #000000;
+    background-color: #0bd1d6;
     z-index: 1;
+    
   }
   #nav a {
 /*    font-family: 'Noto Serif KR', serif;*/
@@ -211,4 +212,7 @@
 .background-content {
     text-align: center;
     color: white; /* Set text color to ensure it's visible against the background */
+}
+#name{
+	font-size: 50px;
 }

@@ -51,7 +51,7 @@
     padding: 10px;
     width: 300px;
     margin-right: -4px; /* Adjusts for the button overlap */
-    border: 2px solid #000000;
+    border: 2px solid #019ca0;
     border-radius: 5px;
   }
 
@@ -61,7 +61,7 @@
     /* background-color: #d1c1f2; */
     cursor: pointer;
     border-radius: 5px;
-    color: #d1c1f2;
+    background-color: #019ca0;
   }
 
   #search-form button img {
@@ -70,7 +70,7 @@
   }
 
   #search-form button:hover {
-     background-color: #d3d3d3;
+     background-color: #0bd1d6;
   }
 
 
@@ -157,6 +157,7 @@
     width: 370px;
     text-align: center;
 /*    position: relative;*/
+ 	width: 204.8px;
   }
   #nav {
     display: flex;
@@ -169,9 +170,12 @@
     right: 0px;
 
     z-index: 1;
+    
+    background-color: #019ca0;
+     width: 100%;
   }
   #nav li:hover {
-    background-color: #000000;
+    background-color: #0bd1d6;
     z-index: 1;
   }
   #nav a {
@@ -235,5 +239,21 @@ input[type="checkbox"]:checked + label.checkbox-label {
     height: auto; /* Maintain aspect ratio */
 }
 
+.background {
+    background-image: url('library.webp'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.background-content {
+    text-align: center;
+    color: white; /* Set text color to ensure it's visible against the background */
+}
+#name{
+	font-size: 50px;
+}
  

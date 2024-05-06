@@ -122,14 +122,15 @@ document.getElementById("submitPost").addEventListener("click", function(event) 
     console.log(filteredText);
     
     var params = {
-        buildingID: bdgVal,
-        buildingName: bdgName,
-        locationTitle: document.getElementById("locationTitle").value,
-        description: filteredText,
-        tags: tagString,
-        rating: checkedCount,
-        //image: fname,
-    };
+	    buildingName: bdgName,
+	    buildingID: bdgVal,
+	    description: filteredText,
+	    image: "", // You can set this to whatever value you need
+	    trojansRatingSum: checkedCount, // Assuming checkedCount represents the trojansRatingSum
+	    numberTrojanRatings: 1, // Assuming initial value for numberTrojanRatings is 1
+	    tags: tagString,
+	    locationTitle: document.getElementById("locationTitle").value
+	};
     console.log("params: u-" + localStorage.getItem("currentUser") + " a-post bID-" + bdgVal + " bname-" + bdgName + " loc-" + document.getElementById("locationTitle").value + " dsc-" + filteredText + " tags-" + tagString + " r-" + checkedCount + " image-");
     url.search = new URLSearchParams(params).toString();
     fetch(url, {

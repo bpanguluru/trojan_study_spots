@@ -139,5 +139,19 @@ document.getElementById("submitPost").addEventListener("click", function(event) 
 	    headers: {
 	        'Content-Type': 'application/json'
 	    }
-	})
+	}).then(data => {
+	    console.log('Post submitted successfully:', data);
+	    window.location.href = 'user_home.html';  // Redirect to user.html on success
+	}).catch(error => {
+	    console.error('Error submitting post:', error);
+	    document.getElementById("postMsg").innerHTML = "Error submitting post: " + error.message;
+	});
+    
+    
+    
+    
+    
+    
+    
+    
 });

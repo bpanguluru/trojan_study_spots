@@ -257,3 +257,23 @@ input[type="checkbox"]:checked + label.checkbox-label {
 	font-size: 50px;
 }
  
+ 
+ .round-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.round-button:hover {
+  background-color: #45a049; /* Darker Green */
+}
+ 

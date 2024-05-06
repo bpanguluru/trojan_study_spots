@@ -161,7 +161,8 @@
   #nav {
     display: flex;
     justify-content: center;
-    background-color: grey;
+    background-color: #019ca0;
+     width: 100%;
 
 /*    position: sticky;*/
     top: 0px;
@@ -196,3 +197,18 @@
   #nav li:hover > ul {
     display: block;
   }
+
+.background {
+    background-image: url('library.webp'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-content {
+    text-align: center;
+    color: white; /* Set text color to ensure it's visible against the background */
+}

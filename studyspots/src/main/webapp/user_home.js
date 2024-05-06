@@ -24,8 +24,10 @@ function createPostCard(post) {
     const container = document.querySelector('.search-container');
     const card = document.createElement('div');
     card.className = 'card';
+    const prefixPath = "uploaded_imgs/";
+    const fullPath = prefixPath + post.imagePath;
     card.innerHTML = `
-        <div class="card-image"><img src="${post.image}" alt="Building Image"></div>
+        <div class="card-image"><img src="${fullPath}" alt="Building Image"></div>
         <div class="card-content">
             <div class="card-title">${post.buildingName}</div>
             <div>${post.buildingID}</div>
@@ -172,17 +174,24 @@ function generateCards(data) {
         var description = item.description;
         var trojansRatingSum = item.trojansRatingSum;
         var numberTrojanRatings = item.numberTrojanRatings;
+        //IMAGE ITEM SHOULD EXIST
+        var imagePath = item.image;
         var avgRatingImageID = "avgRatingImage_" + index;
 		var exactRating = calculateExactRating(trojansRatingSum, numberTrojanRatings);
 
         // Create card elements and populate with data
         var card = document.createElement("div");
         card.className = "card";
+        const prefixPath = "uploaded_imgs/";
+    	const fullPath = prefixPath + imagePath;
         var cardContent = `
-            <div class="card-image">Image</div>
+            <div class="card-image">
+			<img src = "${fullPath}" alt = "cardimg">
+			</div>
             <div class="card-content">
                 <div class="card-title">Building: ${buildingName}</div>
                 <div>Location: ${buildingID}</div>
+                <div>Location: ${fullPath}</div>
                 <div>Description: ${description}</div>
                 <div class="rating">
                     <div class="rating-image">Building Rating:${exactRating}

@@ -342,15 +342,20 @@
 				    <label for="checkbox5" class="blank-img1"></label>
                 </div>
             </div>
-            <div>
-                <label>Upload Image:</label>
-                <input type="file" name="image" id="imageInput" accept="image/*"/>
-            </div>
             <div id="postMsg" style="color:red; font-weight:bold; display:flex; justify-content:center;"> </div>
             <div style="display:flex; justify-content:center">
             	<button type="submit" id="submitPost" style="color:#00bcd4; background:white; border:1px solid #00bcd4; align-self:center">Submit Post</button>
         	</div>
         </form>
+        <!-- IMAGE UPLAOD -->
+        <form id="uploadForm" action="ImgUploadServlet" method="post" enctype="multipart/form-data">
+		  <div class="image-upload">
+		    <label for="imageInput">+ Add Image</label>
+		    <input type="file" name="image" id="imageInput">
+		  </div>
+		  <!-- Other form fields here -->
+		  <input type="submit" value="Submit">
+		</form>
     </div>
 
     <!-- <script>

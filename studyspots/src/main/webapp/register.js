@@ -1,3 +1,7 @@
+function redirectToHome() {
+        window.location.href = 'guest_home.html';
+    }
+
 
 document.querySelector('.register-button').addEventListener('click', function() {
 	
@@ -27,6 +31,7 @@ document.querySelector('.register-button').addEventListener('click', function() 
                 }
             } else {
                 // Handle other status codes if needed
+                alert("issue");
             }
         }
     };

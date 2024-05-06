@@ -2,9 +2,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Location Finder</title>
+<link rel="stylesheet" href="guest_home.css">
 </head>
 <body>
+
+<div class="header">
+    <ul id="nav">
+      <li><a href="user_home.html">Home</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a id = "logout" href="#">Logout</a></li>
+    </ul>
+</div>
+  
 <div class="upload-container">
     <h2>Upload Your Image</h2>
     <form id="imageUploadForm" enctype="multipart/form-data">
@@ -14,6 +24,12 @@
 </div>
 
 <script>
+document.getElementById('logout').addEventListener('click', function(e) {
+    e.preventDefault(); 
+    localStorage.clear();
+    window.location.href = "login.html";
+});
+
 console.log("here");
 document.getElementById('imageUploadForm').addEventListener('submit', function(event) {
 	event.preventDefault();

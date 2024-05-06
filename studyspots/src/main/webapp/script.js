@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
     fetchPosts();
 });
 
-
+//note that this is FOR ALL POSTS, NO QUERY
 function fetchPosts() {
     fetch('PostServlet')
         .then(response => response.json())

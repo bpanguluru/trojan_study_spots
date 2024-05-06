@@ -1,3 +1,11 @@
+function redirectToHome() {
+        window.location.href = 'guest_home.html';
+    }
+function redirectToReg()
+    {
+      window.location.href = "register.html"
+    }
+
 document.querySelector('.login-button').addEventListener('click', function() {
 	
     var username = document.querySelector('.username-input').value;

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Building Info</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="guest_home.css">
 <link rel = "stylesheet" href="style.css">
 <script src="script.js"></script>
@@ -13,9 +14,10 @@
 
   <div class="header">
     <ul id="nav">
-      <li><a href="#">Building</a></li>
+      <li><a href="#">Home Page</a></li>
+      <li><a href="FindThisSpot.html">Where's this spot?</a></li>
       <li><a href="map.html">Map</a></li>
-      <li><a href="login.html">Login</a></li>
+      <li><a id = "logout" href="#">Logout</a></li>
       <li><a href="register.html">Sign Up</a></li>
     </ul>
   </div>
@@ -29,18 +31,18 @@
           </button>
         </form>
       </div>
-
-  <div class="card">
-    <div class="card-image">Image</div>
-    <div class="card-content">
-      <!-- content goes here -->
-  </div>
   
   	<div id="formValues"></div>
   
 
 
 <script>
+document.getElementById('logout').addEventListener('click', function(e) {
+    e.preventDefault(); 
+    localStorage.clear();
+    window.location.href = "login.html";
+});
+
 function getPosts() {
   var searchInput = document.getElementById('search-input').value;
   var xhr = new XMLHttpRequest();

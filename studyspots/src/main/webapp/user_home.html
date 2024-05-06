@@ -3,131 +3,309 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Building Info</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Home</title>
 <link rel="stylesheet" href="guest_home.css">
-<link rel = "stylesheet" href="style.css">
-<script src="script.js"></script>
-
 </head>
-<body>
+<body onload = "displayCurrPosts()">
 
   <div class="header">
     <ul id="nav">
-      <li><a href="#">Home Page</a></li>
-      <li><a href="FindThisSpot.html">Where's this spot?</a></li>
-      <li><a href="map.html">Map</a></li>
-      <li><a id = "logout" href="#">Logout</a></li>
-      <li><a href="register.html">Sign Up</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="map_user.html">Map</a></li>
+      <li><a href="login.html">Log Out</a></li>
     </ul>
   </div>
+  
+  <div class="background">
+	    <div class="background-content">
+	        <h1 id="name">Trojan Study Spots</h1>
+	        <h2>Where Trojans Study!✌️</h2>
+	    </div>
+	</div>
 
   <div class="search-container">
     <h1>Find Your Perfect Study Spot!</h1>
         <form id="search-form">
-          <input type="text" id="search-input" placeholder="Search by building ID...">
-          <button onclick = "getPosts()" type="submit">
-            <img src="search.png" alt="Search">
-          </button>
+          <div>
+            <label>Building Name:</label>
+            <select name="buildingName" id="buildingName" required>
+            <option value="" selected disabled>Select a building</option>
+            <option value="AHF">Allan Hancock Foundation Bldg. (AHF)</option>
+            <option value="AHN">Dosan Ahn Chang Ho Family House (AHN)</option>
+            <option value="ALM">Alumni House (ALM)</option>
+            <option value="ANH">Annenberg House (ANH)</option>
+            <option value="ANN">Wallis Annenberg Hall (ANN)</option>
+            <option value="ASC">Annenberg School for Communication (ASC)</option>
+            <option value="BCC">Eli and Edythe Broad CIRM Center for Regenerative Medicine and Stem Cell Research (BCC)</option>
+            <option value="BCH">Boone Center Housing (BCH)</option>
+            <option value="BDB">Bernardo Drive Bldg. (BDB)</option>
+            <option value="BDF">Brooks Memorial Pavilion and Dedeaux Field (BDF)</option>
+            <option value="BHE">Biegler Hall of Engineering (BHE)</option>
+            <option value="BIT">Bing Theatre (BIT)</option>
+            <option value="BKF">Brian Kennedy Field (BKF)</option>
+            <option value="BKS">Pertusati University Bookstore (BKS)</option>
+            <option value="BMH">Booth Ferris Rehearsal Hall (BMH)</option>
+            <option value="BMP">Burbank Medical Plaza #2 (BMP)</option>
+            <option value="BMT">Bishop Medical Teaching and Research Bldg. (BMT)</option>
+            <option value="BRI">Bridge Memorial Hall (BRI)</option>
+            <option value="BSR">Birnkrant Residential College (BSR)</option>
+            <option value="BTL">Behavior Technology Labs (BTL)</option>
+            <option value="BTP">Beta Theta Pi fraternity (BTP)</option>
+            <option value="CAB">CMSC Administration Bldg. (CAB)</option>
+            <option value="CAL">Carole Little Bldg. (CAL)</option>
+            <option value="CAP">Century Apts. (CAP)</option>
+            <option value="CAR">Cardinal Gardens (CAR)</option>
+            <option value="CAS">College Academic Services Bldg. (CAS)</option>
+            <option value="CBB">Century Boulevard Building (CBB)</option>
+            <option value="CBG">University Gardens Apts. (CBG)</option>
+            <option value="CCC">Health Sciences Child Care Ctr. (CCC)</option>
+            <option value="CDF">Campus Development & Facilities Bldg. (CDF)</option>
+            <option value="CEM">Ctr. for Electron Microscopy and Microanalysis (CEM)</option>
+            <option value="CEN">Centennial Apts. (CEN)</option>
+            <option value="CFH">Cromwell Athletic Field House (CFH)</option>
+            <option value="CGC">Citi Group Center-Marshall School (CGC)</option>
+            <option value="CHA">Commons House Apts. (CHA)</option>
+            <option value="CHP">Ctr. for Health Professions (CHP)</option>
+            <option value="CLH">College House (CLH)</option>
+            <option value="CNG">Cardinal ’N Gold (CNG)</option>
+            <option value="COL">College Residence Hall (COL)</option>
+            <option value="CSA">Clinical Sciences Annex (CSA)</option>
+            <option value="CSB">Central Services Bldg. (CSB)</option>
+            <option value="CSC">Clinical Science Ctr. (CSC)</option>
+            <option value="CSS">Harold Lloyd Motion Picture Scoring Stage (CSS)</option>
+            <option value="CST">CAD Services Trailer (CST)</option>
+            <option value="CTC">Cinema-Television Ctr. Complex (CTC)</option>
+            <option value="CTV">Carson Television Ctr. (CTV)</option>
+            <option value="CUB">Credit Union Building (CUB)</option>
+            <option value="CWO">Childs Way Bldg. I (CWO)</option>
+            <option value="CWT">Childs Way Bldg. II (CWT)</option>
+            <option value="DAC">Doheny Arcadia Clinic (DAC)</option>
+            <option value="DCC">Davidson Continuing Education Conference Ctr. (DCC)</option>
+            <option value="DCF">Delta Chi fraternity (DCF)</option>
+            <option value="DEN">Norris Dental Science Ctr. (DEN)</option>
+            <option value="DML">Doheny Memorial Library (DML)</option>
+            <option value="DMT">Marks Tower (DMT)</option>
+            <option value="DNI">Dornsife Neuroscience Imaging Center (DNI)</option>
+            <option value="DOH">Estelle Doheny Eye Foundation (DOH)</option>
+            <option value="DRB">Denney Research Ctr. (DRB)</option>
+            <option value="DRC">Drama Ctr. (DRC)</option>
+            <option value="DTD">Delta Tau Delta fraternity (DTD)</option>
+            <option value="DXM">Marks Residence Hall (DXM)</option>
+            <option value="ECT">Early Childhood Training Ctr. (ECT)</option>
+            <option value="EDM">Edmondson Research Bldg. (EDM)</option>
+            <option value="EEB">Hughes Aircraft Electrical Engineering Bldg. (EEB)</option>
+            <option value="EHP">Estrella Housing Partners (EHP)</option>
+            <option value="ELB">East Library Bldg. (ELB)</option>
+            <option value="EPS">Exposition Blvd. Parking Structure (EPS)</option>
+            <option value="ESH">Engemann Student Health Center (ESH)</option>
+            <option value="EVK">EVK Residence Hall (EVK)</option>
+            <option value="FIG">Figueroa Bldg. (FIG)</option>
+            <option value="FLT">Fluor Tower (FLT)</option>
+            <option value="FMH">Forthmann House (FMH)</option>
+            <option value="FML">Feuchtwanger Memorial Library (FML)</option>
+            <option value="FMT">Fairmont Apts. (FMT)</option>
+            <option value="FPM">Facilities Management & Planning Trailer (FPM)</option>
+            <option value="FRE">Freeman House (FRE)</option>
+            <option value="FSA">Founders Apts. (FSA)</option>
+            <option value="GAH">Gamble House (GAH)</option>
+            <option value="GAP">Galen Athletic Pavilion (GAP)</option>
+            <option value="GEC">Galen Event Center (GEC)</option>
+            <option value="GEH">Max Kade Ctr. I (GEH)</option>
+            <option value="GER">Gerontology Ctr. (GER)</option>
+            <option value="GEX">Max Kade House (GEX)</option>
+            <option value="GFS">Grace Ford Salvatori Hall of Letters (GFS)</option>
+            <option value="GLB">General Labs Bldg. (GLB)</option>
+            <option value="GNH">General County Hospital (GNH)</option>
+            <option value="GPC">Golf Practice Course (GPC)</option>
+            <option value="HAP">Helena Apts. (HAP)</option>
+            <option value="HAR">Harris Hall (HAR)</option>
+            <option value="HCB">CMSC Hyperbaric Chamber Building (HCB)</option>
+            <option value="HC1">Health Care Consultation Ctr. (HC1)</option>
+            <option value="HC2">Health Consultation Ctr. II (HC2)</option>
+            <option value="HC4">Estelle Doheny Eye Institute (HC4)</option>
+            <option value="HED">HEDCO Petroleum & Chemical Engineering Bldg. (HED)</option>
+            <option value="HER">Heritage Hall (HER)</option>
+            <option value="HHR">Honors House (HHR)</option>
+            <option value="HIL">Hillview Apts. (HIL)</option>
+            <option value="HJF">Howard Jones Football Practice Field (HJF)</option>
+            <option value="HMR">Hoffman Medical Research Bldg. (HMR)</option>
+            <option value="HNB">HEDCO Neurosciences Bldg. (HNB)</option>
+            <option value="HOH">Hoffman Hall of Business Administration (HOH)</option>
+            <option value="HPB">Huntington Pavilion Bldg. (HPB)</option>
+            <option value="HRA">Health Research Assn. (HRA)</option>
+            <option value="HRC">Human Relations Ctr. (HRC)</option>
+            <option value="HRH">Harris Residence Hall (HRH)</option>
+            <option value="HSA">Health Sciences Alhambra (HSA)</option>
+            <option value="HSH">Hazel and Stanley Hall Financial Services Bldg. (HSH)</option>
+            <option value="HSP">Health Sciences Campus Parking Structure (HSP)</option>
+            <option value="HSR">Hoover Street Residence (HSR)</option>
+            <option value="HUC">Hebrew Union College (HUC)</option>
+            <option value="IFT">Ickovics Family Trust Bldg.-Fine Arts (IFT)</option>
+            <option value="IRC">International Residential College (IRC)</option>
+            <option value="IRD">Interns & Residents Dormitory (IRD)</option>
+            <option value="ISE">Information Science Institute East (ISE)</option>
+            <option value="ISI">Information Science Institute (ISI)</option>
+            <option value="JEF">Jefferson Bldg. (JEF)</option>
+            <option value="JEP">Joint Educational Project House (JEP)</option>
+            <option value="JHH">John Hubbard Hall (JHH)</option>
+            <option value="JKP">Jane Popovich and J. Kristoffer Popovich Hall (JKP)</option>
+            <option value="JMA">Jewel Manor Apartment (JMA)</option>
+            <option value="JMC">John McKay Ctr. (JMC)</option>
+            <option value="KAM">Keith Administration Bldg.; Mayer Medical Teaching Ctr. (KAM)</option>
+            <option value="KAP">Kaprielian Hall (KAP)</option>
+            <option value="KCH">Kerckhoff Carriage House (KCH)</option>
+            <option value="KER">Kerckhoff Hall (KER)</option>
+            <option value="KOH">Frank L. King Olympic Hall of Champions (KOH)</option>
+            <option value="KSH">University Club at King Stoops Hall (KSH)</option>
+            <option value="LAB">La Sorbonne Apts. (LAB)</option>
+            <option value="LAC">Los Angeles County + USC Hospital (LAC)</option>
+            <option value="LAW">Elvon and Mabel Musick Law Bldg. (LAW)</option>
+            <option value="LCA">Lambda Chi Alpha fraternity (LCA)</option>
+            <option value="LHI">Donald P. and Katherine B. Loker Hydrocarbon Inst. (LHI)</option>
+            <option value="LJS">Laird J. Stabler Memorial Hall (LJS)</option>
+            <option value="LMJ">Lorraine and Marvin Jacobs Bldg. (LMJ)</option>
+            <option value="LRC">General William Lyon University Ctr. (LRC)</option>
+            <option value="LTS">Katherine B. Loker Track Stadium (LTS)</option>
+            <option value="LVL">Thomas and Dorothy Leavey Library (LVL)</option>
+            <option value="MAB">Manor Apts. (MAB)</option>
+            <option value="MBC">McDonald Becket Center (MBC)</option>
+            <option value="MCA">McKibben Addition (MCA)</option>
+            <option value="MCC">McClintock Building (MCC)</option>
+            <option value="MCH">McKibben Hall (MCH)</option>
+            <option value="MCT">McCulloch Townhomes (MCT)</option>
+            <option value="MFT">Mani Figueroa Tower (MFT)</option>
+            <option value="MHP">Mudd Memorial Hall of Philosophy (MHP)</option>
+            <option value="MMR">Mudd Memorial Research Bldg. (MMR)</option>
+            <option value="MOL">Medical Oncology Lab (MOL)</option>
+            <option value="MRF">Montgomery Ross Fisher Bldg. (MRF)</option>
+            <option value="MSC">Marine Sciences Ctr. Lab (MSC)</option>
+            <option value="MSR">Marine Science Center Residence Hall (MSR)</option>
+            <option value="MTS">Marks Tennis Stadium (MTS)</option>
+            <option value="MUS">Albert S. Raubenheimer Music Faculty Memorial Bldg. (MUS)</option>
+            <option value="MVB">Mountain View Bldg. (MVB)</option>
+            <option value="NCT">Norris Cinema Theatre (NCT)</option>
+            <option value="NEW">New Residential College (NEW)</option>
+            <option value="NML">Norris Medical Library (NML)</option>
+            <option value="NOR">USC/Norris Comprehensive Cancer Ctr. (NOR)</option>
+            <option value="NRC">North Residential College (NRC)</option>
+            <option value="NRT">Harlyne J. Norris Research Tower (NRT)</option>
+            <option value="NTT">Dr. Norman Topping Tower (NTT)</option>
+            <option value="OCC">Orange County Ctr. (OCC)</option>
+            <option value="OCW">Harold E. and Lillian M. Moulton Organic Chemistry Wing (OCW)</option>
+            <option value="OHE">Olin Hall of Engineering (OHE)</option>
+            <option value="ONE">One Institute (ONE)</option>
+            <option value="OSP">Our Savior Parish and USC Caruso Catholic Center (OSP)</option>
+            <option value="PCA">Pacific Apts. (PCA)</option>
+            <option value="PCE">Petroleum and Chemical Engineering Bldg. (PCE)</option>
+            <option value="PED">Physical Education Bldg. (PED)</option>
+            <option value="PHE">Powell Hall (PHE)</option>
+            <option value="PHH">Phinney Hall (PHH)</option>
+            <option value="PKS">Parkside Apts. (PKS)</option>
+            <option value="PRB">Parkside Residential Building (PRB)</option>
+            <option value="PSA">Parking Structure A (PSA)</option>
+            <option value="PSB">Parking Structure B (PSB)</option>
+            <option value="PSC">John Stauffer Pharmaceutical Sciences Ctr. (PSC)</option>
+            <option value="PSD">Parking Structure D (PSD)</option>
+            <option value="PSO">Parking Structure One (PSO)</option>
+            <option value="PSX">Parking Structure C (PSX)</option>
+            <option value="PTD">Pardee Tower (PTD)</option>
+            <option value="PVB">Playa Vista Bldg. (PVB)</option>
+            <option value="PVT">Playa Vista Bldg. Two (PVT)</option>
+            <option value="RAN">Hoffman Contracts Bldg. (RAN)</option>
+            <option value="RGA">Regent Apts. (RGA)</option>
+            <option value="RGL">Ralph and Goldy Lewis Hall (RGL)</option>
+            <option value="RHM">Ramo Hall of Music (RHM)</option>
+            <option value="RHR">Radisson Hotel Restaurant (RHR)</option>
+            <option value="RMH">Radisson Midcity Hotel (RMH)</option>
+            <option value="RMR">Raulston Medical Research Bldg. (RMR)</option>
+            <option value="ROY">Royal St. House (ROY)</option>
+            <option value="RRB">Rapp Engineering Research Bldg. (RRB)</option>
+            <option value="RRI">Ray R. Irani Hall (RRI)</option>
+            <option value="RTA">Regal Trojan Apts. (RTA)</option>
+            <option value="RTH">Ronald Tutor Hall of Engineering (RTH)</option>
+            <option value="RZC">Robert Zemeckis Ctr. for Digital Arts (RZC)</option>
+            <option value="SAC">Sacramento Center (SAC)</option>
+            <option value="SAI">Stardust Apts. (SAI)</option>
+            <option value="SAL">Salvatori Computer Science Ctr. (SAL)</option>
+            <option value="SCA">School of Cinematic Arts (SCA)</option>
+            <option value="SCB">School of Cinematic Arts Bldg. B (SCB)</option>
+            <option value="SCC">School of Cinematic Arts Bldg. C (SCC)</option>
+            <option value="SCD">Scene Dock (Theatre) (SCD)</option>
+            <option value="SCE">School of Cinematic Arts Bldg. E (SCE)</option>
+            <option value="SCI">School of Cinematic Arts Bldg. I (SCI)</option>
+            <option value="SCP">South Coast Plaza Bldg. (SCP)</option>
+            <option value="SCX">School of Cinematic Arts Bldg. D (SCX)</option>
+            <option value="SGA">Seven Gables Apts. (SGA)</option>
+            <option value="SGM">Seeley G. Mudd Bldg. (SGM)</option>
+            <option value="SHS">Stauffer Hall of Science (SHS)</option>
+            <option value="SIE">Sierra Apts. (SIE)</option>
+            <option value="SKS">Steven and Kathryn Sample Hall (SKS)</option>
+            <option value="SLH">Stauffer Science Lecture Hall (SLH)</option>
+            <option value="SMF">Soni-McAlister Field (SMF)</option>
+            <option value="SNA">Senator Apts. (SNA)</option>
+            <option value="SOS">Social Science Bldg. (SOS)</option>
+            <option value="SPA">Shrine Place Apartments (SPA)</option>
+            <option value="SSA">Severance St. Apts. (SSA)</option>
+            <option value="SSB">Soto Street Building (SSB)</option>
+            <option value="SSC">Seaver Science Ctr. (SSC)</option>
+            <option value="SSH">Severance St. House (SSH)</option>
+            <option value="SSL">Seaver Science Library (SSL)</option>
+            <option value="STO">Stonier Hall (STO)</option>
+            <option value="STU">Gwynn Wilson Student Union Bldg. (STU)</option>
+            <option value="SUN">Sunset Apts. (SUN)</option>
+            <option value="SWC">Social Work Ctr. (SWC)</option>
+            <option value="TAP">Troyland Apts. (TAP)</option>
+            <option value="TCC">Ronald Tutor Campus Center (TCC)</option>
+            <option value="TCX">Tennis Court I (TCX)</option>
+            <option value="TGF">Town and Gown (TGF)</option>
+            <option value="THH">Taper Hall of Humanities (THH)</option>
+            <option value="THR">Two Harbors Residences (THR)</option>
+            <option value="TMC">The Music Complex (TMC)</option>
+            <option value="TOW">Tower Hall (TOW)</option>
+            <option value="TPA">Twin Palms Apts. (TPA)</option>
+            <option value="TRF">Temporary Research Facility (TRF)</option>
+            <option value="TRH">Troy Hall (TRH)</option>
+            <option value="TRO">Trojan Hall (TRO)</option>
+            <option value="TSA">Terrace Apts. (TSA)</option>
+            <option value="TTL">Technical Theatre Lab. (TTL)</option>
+            <option value="TUS">Tuscany (TUS)</option>
+            <option value="TYL">Tyler Bldg. (TYL)</option>
+            <option value="UAC">Uytengsu Aquatics Center (UAC)</option>
+            <option value="UGB">University Gardens (UGB)</option>
+            <option value="UGW">University Gateway (UGW)</option>
+            <option value="UPX">University Parking Ctr. (UPX)</option>
+            <option value="URA">University Regent Apts. (URA)</option>
+            <option value="URC">University Religious Ctr. (URC)</option>
+            <option value="URH">University Residence Hall (URH)</option>
+            <option value="UUC">United University Church (UUC)</option>
+            <option value="UVI">University Village (UVI)</option>
+            <option value="VBB">Valley Blvd. Bldg. (VBB)</option>
+            <option value="VHE">Vivian Hall of Engineering (VHE)</option>
+            <option value="VIS">Vista Apts. (VIS)</option>
+            <option value="VKC">Von KleinSmid Ctr. for International and Public Affairs (VKC)</option>
+            <option value="VWB">Valley Warehouse Bldg. (VWB)</option>
+            <option value="WAH">Watt Hall of Architecture and Fine Arts (WAH)</option>
+            <option value="WIN">Windsor Apts. (WIN)</option>
+            <option value="WPH">Waite Phillips Hall (WPH)</option>
+            <option value="WTO">Webb Tower (WTO)</option>
+            <option value="ZHS">Zumberge Hall of Science (ZHS)</option>
+            <option value="ZNI">Zilkha Neurogenetic Institute (ZNI)</option>
+        </select>
+        </div>
+          
+         
+          <div style="margin:10px">
+			<button class="round-button" onclick="window.open('newpost.html', '_blank')">Add New Post!</button>
+		</div>
         </form>
       </div>
+      
+	
+	<!-- Div to display form values -->
+	<div id="cardContainer"></div>
+	
+   <script src="user_home.js"></script>
   
-  	<div id="formValues"></div>
   
-
-
-<script>
-document.getElementById('logout').addEventListener('click', function(e) {
-    e.preventDefault(); 
-    localStorage.clear();
-    window.location.href = "login.html";
-});
-
-function getPosts() {
-  var searchInput = document.getElementById('search-input').value;
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/getPostsServlet", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var posts = JSON.parse(xhr.responseText);
-      updatePosts(posts);
-    }
-  };
-  var data = JSON.stringify({"buildingPrompt": searchInput});
-  xhr.send(data);
-}
-
-function updatePosts(posts) {
-  var container = document.getElementById('posts-container');
-  container.innerHTML = ''; 
-  posts.postsList.forEach(function(post) {
-    var div = document.createElement('div');
-    div.className = 'post';
-    div.innerHTML = `<h2>${post.buildingName}</h2>
-                     <p>${post.description}</p>
-                     <img src="'${post.imagePath}'" alt="Building Image">
-                     <div>Rating: ${(count > 0 ? (sum / count).toFixed(2) : 'Not rated')} </div>
-                     <div class="rating">
-                     <form id="ratingForm" onsubmit="submitForm(event)">
-            		    <input type="checkbox" id="checkbox1${post.buildingName}" name="rating[]" value="checkbox1" onclick="toggleImageClass('checkbox1')">
-            		    <label for="checkbox1" class="blank-img1${post.buildingName}"></label>
-            		    
-            		    <input type="checkbox" id="checkbox2${post.buildingName}" name="rating[]" value="checkbox2" onclick="toggleImageClass('checkbox2')">
-            		    <label for="checkbox2" class="blank-img1"></label>
-            		    
-            		    <input type="checkbox" id="checkbox3${post.buildingName}" name="rating[]" value="checkbox3" onclick="toggleImageClass('checkbox3')">
-            		    <label for="checkbox3" class="blank-img1"></label>
-            		    
-            		    <input type="checkbox" id="checkbox4${post.buildingName}" name="rating[]" value="checkbox4" onclick="toggleImageClass('checkbox4')">
-            		    <label for="checkbox4" class="blank-img1"></label>
-            		    
-            		    <input type="checkbox" id="checkbox5${post.buildingName}" name="rating[]" value="checkbox5" onclick="toggleImageClass('checkbox5')">
-            		    <label for="checkbox5" class="blank-img1"></label>
-            	 		
-            	 		<input type="submit${post.buildingName}" value="Submit"><br>
-            		    <input type="reset${post.buildingName}" value="Reset"/><br>
-            		 </form>
-                   </div>
-                   <class="comments-link">Comments...</button>`;
-    
-    container.appendChild(div);
-    document.getElementById(`submit${post.buildingName}`).addEventListener('click', function() {
-		event.preventDefault(); 
-		/* HOWEVER RATING IS RETRIEVED FROM FORM DATA*/
-		sendRating();
-    });
-    
-  });
-}
-
-function sendRating(userID, rating) {
-	var formData = {
-        userID: userID,
-        rating: rating
-    };
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "rateServlet", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState === 4 && xhttp.status === 200) { 
-            var response = JSON.parse(xhttp.responseText);
-            if (response.success) 
-            {
-                alert("Rating submitted!");
-            } 
-            else 
-            {
-                alert("Insufficient funds");
-            }
-        }
-    };
-
-    xhttp.send(JSON.stringify(formData));
-}
-
-</script>
 </body>
 </html>

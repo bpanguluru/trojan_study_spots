@@ -41,6 +41,7 @@ public class JDBCConnector {
 	            jsonObject.addProperty("description", rs.getString("description"));
 	            jsonObject.addProperty("trojansRatingSum", rs.getString("trojansRatingSum"));
 	            jsonObject.addProperty("numberTrojanRatings", rs.getString("numberTrojanRatings"));
+	            jsonObject.addProperty("image", rs.getString("image"));
 
 	            // Add the JSON object to the JSON array
 	            jsonArray.add(jsonObject);

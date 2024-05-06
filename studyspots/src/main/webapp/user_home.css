@@ -123,6 +123,7 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    overflow: hidden;
   }
   .card-content {
     padding: 10px;

@@ -191,7 +191,6 @@ function generateCards(data) {
             <div class="card-content">
                 <div class="card-title">Building: ${buildingName}</div>
                 <div>Location: ${buildingID}</div>
-                <div>Location: ${fullPath}</div>
                 <div>Description: ${description}</div>
                 <div class="rating">
                     <div class="rating-image">Building Rating:${exactRating}

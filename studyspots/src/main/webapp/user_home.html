@@ -10,13 +10,18 @@
 
   <div class="header">
     <ul id="nav">
-      <li><a href="#">Home Page</a></li>
-      <li><a href="map.html">Map</a></li>
-      <li><a href="login.html">Logout</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="map_user.html">Map</a></li>
+      <li><a href="login.html">Log Out</a></li>
     </ul>
   </div>
-
-	<button class="round-button" onclick="window.open('newpost.html', '_blank')">Add New Post!</button>
+  
+  <div class="background">
+	    <div class="background-content">
+	        <h1 id="name">Trojan Study Spots</h1>
+	        <h2>Where Trojans Study!✌️</h2>
+	    </div>
+	</div>
 
   <div class="search-container">
     <h1>Find Your Perfect Study Spot!</h1>
@@ -25,8 +30,12 @@
           <button type="submit">
             <img src="search.png" alt="Search">
           </button>
+          <div style="margin:10px">
+			<button class="round-button" onclick="window.open('newpost.html', '_blank')">Add New Post!</button>
+		</div>
         </form>
       </div>
+      
 	
 	<!-- Div to display form values -->
 	<div id="cardContainer"></div>
